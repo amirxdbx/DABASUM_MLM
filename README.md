@@ -3,14 +3,14 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+  <a href="[https://github.com/othneildrew/Best-README-Template](https://www.uc.pt/site/assets/files/31678)">
+    <img src="/isise.jpg" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">Best-README-Template</h3>
+  <h3 align="center">DABASUM ML Tool</h3>
 
   <p align="center">
-    An awesome README template to jumpstart your projects!
+    In this online app you can predict the total shear strength of RC beams strngthrnrd with EBR-FRP 
     <br />
     <a href="https://github.com/othneildrew/Best-README-Template](https://share.streamlit.io/amirxdbx/dabasum_mlm/main/deploy.py"><strong>Explore the App »</strong></a>
     <br />

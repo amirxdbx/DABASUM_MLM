@@ -92,13 +92,13 @@ st.write(data)
 #load ML model 
 if Model=='XGBoost': 
     st.write('XGBoost model is loaded!')
-    Selected_Model=(r'saved_models/Xgboost.pkl')
+    Selected_Model=(r'Xgboost.pkl')
 elif Model=='RF':
     st.write('RF model is loaded!')
-    Selected_Model=(r'saved_models/Random Forest.pkl')
+    Selected_Model=(r'Random Forest.pkl')
 elif Model=='Gradiant Boosting':
     st.write('Gradiant Boosting model is loaded!')
-    Selected_Model=(r'saved_models/Gradient Bossting.pkl')
+    Selected_Model=(r'Gradient Bossting.pkl')
 
 with open(Selected_Model,'rb') as f:
     model=load(f)

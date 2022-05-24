@@ -4,6 +4,7 @@ import numpy as np
 import streamlit as st
 import pickle
 @st.cache(hash_funcs={"MyUnhashableClass": lambda _: None}
+          
 def load_model():
     XGB=pickle.load(open('XGboost.pkl','rb'))
     RF=pickle.load(open('Random Forest.pkl','rb'))

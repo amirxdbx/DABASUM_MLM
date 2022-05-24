@@ -3,8 +3,7 @@ import pandas as pd
 import numpy as np
 import streamlit as st
 import pickle
-@st.cache()
-          
+
 def load_model():
     XGB=pickle.load(open('XGboost.pkl','rb'))
     RF=pickle.load(open('Random Forest.pkl','rb'))

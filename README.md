@@ -3,7 +3,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="[https://www.uc.pt/site/assets/files](https://github.com/amirxdbx/DABASUM_MLM/edit">
+  <a href="https://github.com/amirxdbx/DABASUM_MLM">
     <img src="main/ISISE.jpg" alt="Logo" width="80" height="80">
   </a>
 

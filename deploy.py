@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 import streamlit as st
 import pickle
-@st.cache(hash_funcs={builtins.dict: my_hash_func})
+@st.cache(hash_funcs={"MyUnhashableClass": lambda _: None})
           
 def load_model():
     XGB=pickle.load(open('XGboost.pkl','rb'))

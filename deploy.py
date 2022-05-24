@@ -91,7 +91,7 @@ st.write(data)
 #load ML model 
 if Model=='XGBoost': 
     st.write('XGBoost model is loaded!')
-    Selected_Model=(r'Xgboost.pkl')
+    Selected_Model=(r'XGboost.pkl')
 elif Model=='RF':
     st.write('RF model is loaded!')
     Selected_Model=(r'Random Forest.pkl')

@@ -3,7 +3,6 @@ import pandas as pd
 import numpy as np
 import streamlit as st
 from pickle import load
-from bokeh.plotting import figure, show
 ################################################################
 
 st.write("""

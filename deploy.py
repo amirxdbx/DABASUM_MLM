@@ -2,7 +2,13 @@
 import pandas as pd
 import numpy as np
 import streamlit as st
-from pickle import load
+import torch
+@st.cache
+def load_model():
+    XGB=torch.load('XGboost.pkl')
+    RF=torch.load('Random Forest.pkl')
+    GBoost=torch.load('XGboost.pkl')
+	return XGB,RF,GBoost
 ################################################################
 
 st.write("""
@@ -86,28 +92,17 @@ data,Model,X = user_input_features()
 st.subheader('User Input parameters')
 st.write(data)
 
-#load ML model 
-GBoost=(r'Gradient Bossting.pkl')
-RF=(r'Random Forest.pkl')
-XGBoost=(r'XGboost.pkl')
 
-GBoost = open(GBoost,'rb')
-RF = open(RF,'rb')
-XGBoost = open(XGBoost,'rb')
-
-Xgboost=load(XGBoost)
-RFM=load(RF)
-GB=load(GBoost)
-
+XGB,RF,GBoost=load_model()
 if Model=='XGBoost': 
     st.write('XGBoost model is loaded!')
-    model=Xgboost
+    model=XGB
 elif Model=='RF':
     st.write('RF model is loaded!')  
-    model=RFM
+    model=RF
 elif Model=='Gradiant Boosting':
     st.write('Gradiant Boosting model is loaded!')
-    model=GB
+    model=GBoost
 st.subheader('Prediction of Shear strength:')
 scaled_outputs=model.predict(X)
 st.write('$V_R= $', round(scaled_outputs[0],1),'kN')

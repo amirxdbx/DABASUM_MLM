@@ -99,8 +99,7 @@ elif Model=='Gradiant Boosting':
     st.write('Gradiant Boosting model is loaded!')
     Selected_Model=(r'Gradient Bossting.pkl')
 
-with open(Selected_Model,'rb') as f:
-    model=load(f)
+model=open(Selected_Model,"rb")
 st.subheader('Prediction of Shear strength:')
 scaled_outputs=model.predict(X)
 st.write('$V_R= $', round(scaled_outputs[0],1),'kN')

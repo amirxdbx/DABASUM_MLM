@@ -89,19 +89,18 @@ st.subheader('User Input parameters')
 st.write(data)
 
 #load ML model 
-@st.cache
-def load_model():
-    GBoost=(r'Gradient Bossting.pkl')
-    RF=(r'Random Forest.pkl')
-    XGBoost=(r'XGboost.pkl')
-    GBoost = open(GBoost,'rb')
-    RF = open(RF,'rb')
-    XGBoost = open(XGBoost,'rb')
-    Xgboost=load(XGBoost)
-    RFM=load(RF)
-    GB=load(GBoost)
-    return GB,RFM,Xgboost
-GB,RFM,Xgboost = load_model()
+GBoost=(r'Gradient Bossting.pkl')
+RF=(r'Random Forest.pkl')
+XGBoost=(r'XGboost.pkl')
+
+GBoost = open(GBoost,'rb')
+RF = open(RF,'rb')
+XGBoost = open(XGBoost,'rb')
+
+Xgboost=load(XGBoost)
+RFM=load(RF)
+GB=load(GBoost)
+
 if Model=='XGBoost': 
     st.write('XGBoost model is loaded!')
     model=Xgboost

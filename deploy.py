@@ -6,9 +6,9 @@ import pickle
 @st.cache
 def load_model():
     XGB=pickle.load(open('XGboost.pkl','rb'))
-    RF=v.load(open('Random Forest.pkl','rb'))
+    RF=,'rb').load(open('Random Forest.pkl','rb'))
     GBoost=pickle.load(open('XGboost.pkl','rb'))
-    return pickle,RF,GBoost
+    return XGB,RF,GBoost
 ################################################################
 
 st.write("""

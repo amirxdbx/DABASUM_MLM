@@ -9,6 +9,7 @@ def load_model():
     RF=pickle.load(open('Random Forest.pkl','rb'))
     GBoost=pickle.load(open('Gradient Bossting.pkl','rb'))
     return XGB,RF,GBoost
+XGB,RF,GBoost=load_model()
 ################################################################
 
 st.write("""
@@ -92,8 +93,6 @@ data,Model,X = user_input_features()
 st.subheader('User Input parameters')
 st.write(data)
 
-
-XGB,RF,GBoost=load_model()
 if Model=='XGBoost': 
     st.write('XGBoost model is loaded!')
     model=XGB

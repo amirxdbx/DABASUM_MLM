@@ -101,7 +101,7 @@ def load_model():
     RFM=load(RF)
     GB=load(GBoost)
     return GB,RFM,Xgboost
-
+GB,RFM,Xgboost = load_model()
 if Model=='XGBoost': 
     st.write('XGBoost model is loaded!')
     model=Xgboost

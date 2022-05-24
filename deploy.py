@@ -2,13 +2,13 @@
 import pandas as pd
 import numpy as np
 import streamlit as st
-import torch
+import pikle
 @st.cache
 def load_model():
-    XGB=torch.load('XGboost.pkl')
-    RF=torch.load('Random Forest.pkl')
-    GBoost=torch.load('XGboost.pkl')
-    return XGB,RF,GBoost
+    XGB=pickle.load(open('XGboost.pkl','rb'))
+    RF=v.load(open('Random Forest.pkl','rb'))
+    GBoost=pickle.load(open('XGboost.pkl','rb'))
+    return pickle,RF,GBoost
 ################################################################
 
 st.write("""

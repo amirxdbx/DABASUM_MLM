@@ -12,10 +12,10 @@
   <p align="center">
     An awesome README template to jumpstart your projects!
     <br />
-    <a href="[https://github.com/othneildrew/Best-README-Template](https://share.streamlit.io/amirxdbx/dabasum_mlm/main/deploy.py)"><strong>Explore the App »</strong></a>
+    <a href="https://github.com/othneildrew/Best-README-Template](https://share.streamlit.io/amirxdbx/dabasum_mlm/main/deploy.py"><strong>Explore the App »</strong></a>
     <br />
     <br />
-  <a href="[mailto:amir.xdbx@gmail.com](https://share.streamlit.io/amirxdbx/dabasum_mlm/main/deploy.py)">View Demo</a>
-  <a href="mailto:amir.xdbx@gmail.com">Report problems!</a>
+    <a href="https://share.streamlit.io/amirxdbx/dabasum_mlm/main/deploy.py">View Demo</a>
+    <a href="mailto:amir.xdbx@gmail.com">Report problems!</a>
   </p>
 </div>

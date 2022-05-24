@@ -6,8 +6,8 @@ import pickle
 @st.cache
 def load_model():
     XGB=pickle.load(open('XGboost.pkl','rb'))
-    RF=,'rb').load(open('Random Forest.pkl','rb'))
-    GBoost=pickle.load(open('XGboost.pkl','rb'))
+    RF=pickle.load(open('Random Forest.pkl','rb'))
+    GBoost=pickle.load(open('Gradient Bossting.pkl','rb'))
     return XGB,RF,GBoost
 ################################################################
 

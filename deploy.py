@@ -28,7 +28,6 @@ def user_input_features():
     Rho_f = st.sidebar.number_input('Rho_f', 0.00014, 0.017, 0.00045)
     E_fm = st.sidebar.slider('E_fm', 67, 392, 235)
     w_s = st.sidebar.slider('w_s', 0.125, 1.0, 0.4)
-    HF_C_EBR = st.sidebar.slider('HF_C_EBR', 150, 650, 366)
     alpha = st.sidebar.slider('alpha', 30, 90, 90)
     Full_wrap = st.sidebar.radio("Full_wrap or U-wrap?",
      ('Full_wrap', 'U-wrap'),key = "2")
@@ -47,7 +46,6 @@ def user_input_features():
             'FRP reinforcement':Rho_f,
             'Elastic modulus of FRP': E_fm,
             'width to spacing of FRP strips (1 in case of continuous)':w_s,
-            'Height of FRP (equal to HW in case of Full wrap)':HF_C_EBR,
             'Angel between FRP fibers and beam axis':alpha,
             'Type of Wrapping':Full_wrap,
             'continuity':Continuous
@@ -74,7 +72,7 @@ def user_input_features():
             'Rho_f':Rho_f,
             'E_fm': E_fm*1000,
             'w/s':w_s,
-            'HF_C_EBR':HF_C_EBR,
+            'HF_C_EBR':HW,
             'alpha':np.radians(alpha),
             'Full wrap':Full_wrap,
             'Continuous':Continuous

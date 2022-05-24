@@ -8,7 +8,7 @@ def load_model():
     XGB=torch.load('XGboost.pkl')
     RF=torch.load('Random Forest.pkl')
     GBoost=torch.load('XGboost.pkl')
-	return XGB,RF,GBoost
+    return XGB,RF,GBoost
 ################################################################
 
 st.write("""

@@ -89,17 +89,27 @@ st.subheader('User Input parameters')
 st.write(data)
 
 #load ML model 
+GBoost=(r'Gradient Bossting.pkl')
+RF=(r'Random Forest.pkl')
+XGBoost=(r'XGboost.pkl')
+
+GBoost = open(GBoost,'rb')
+RF = open(RF,'rb')
+XGBoost = open(XGBoost,'rb')
+
+Xgboost=load(XGBoost)
+RFM=load(RF)
+GB=load(GBoost)
+@st.cache
 if Model=='XGBoost': 
     st.write('XGBoost model is loaded!')
-    Selected_Model=(r'XGboost.pkl')
+    model=Xgboost
 elif Model=='RF':
-    st.write('RF model is loaded!')
-    Selected_Model=(r'Random Forest.pkl')
+    st.write('RF model is loaded!')  
+    model=RFM
 elif Model=='Gradiant Boosting':
     st.write('Gradiant Boosting model is loaded!')
-    Selected_Model=(r'Gradient Bossting.pkl')
-file = open(Selected_Model,'rb')
-model=load(file)
+    model=GB
 st.subheader('Prediction of Shear strength:')
 scaled_outputs=model.predict(X)
 st.write('$V_R= $', round(scaled_outputs[0],1),'kN')

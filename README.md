@@ -4,7 +4,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/amirxdbx/DABASUM_MLM">
-    <img src="ISISE.jpg" alt="Logo" width="80" height="80">
+    <img src="ISISE.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">DABASUM ML Tool</h3>

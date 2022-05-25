@@ -26,14 +26,14 @@ def user_input_features():
      "What is the  type of cross section?",
      ('Rectangular', 'T_section'),key = "1")
     st.sidebar.title('Cross sections properties:')
-    BW = st.sidebar.slider('BW', 75, 400, 200)
-    HW = st.sidebar.slider('HW', 150, 650, 400)
+    BW = st.sidebar.slider('BW', 75, 600, 200)
+    HW = st.sidebar.slider('HW', 150, 720, 400)
     a_d = st.sidebar.slider('a_d', 1.2, 5.0, 1.56)
-    RHOSWV = st.sidebar.number_input('RHOSWV', 0.0, 0.0122, 0.00164)
-    RHOSL = st.sidebar.number_input('RHOSL', 0.003, 0.075, 0.023)
+    RHOSWV = st.sidebar.number_input('RHOSWV', 0.0, 0.84, 0.164)
+    RHOSL = st.sidebar.number_input('RHOSL', 0.3, 7.5, 2.3)
     FCM = st.sidebar.slider('FCM', 11.0, 60.0, 32.9)
     st.sidebar.title('FRP reinforcement properties:') 
-    Rho_f = st.sidebar.number_input('Rho_f', 0.00014, 0.017, 0.00045)
+    Rho_f = st.sidebar.number_input('Rho_f', 0.014, 1.7, 0.045)
     E_fm = st.sidebar.slider('E_fm', 67, 392, 235)
     w_s = st.sidebar.slider('w_s', 0.125, 1.0, 0.4)
     alpha = st.sidebar.slider('alpha', 30, 90, 90)
@@ -74,10 +74,10 @@ def user_input_features():
             'BW':BW,
             'HW': HW,
             'a/d':a_d,
-            'RHOSWV': RHOSWV,
-            'RHOSL':RHOSL,
+            'RHOSWV': RHOSWV/100,
+            'RHOSL':RHOSL/100,
             'FCM':FCM,
-            'Rho_f':Rho_f,
+            'Rho_f':Rho_f/100,
             'E_fm': E_fm*1000,
             'w/s':w_s,
             'HF_C_EBR':HW,

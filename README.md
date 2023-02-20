@@ -7,10 +7,11 @@
     <img src="ISISE.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">DABASUM ML Tool</h3>
+  <h3 align="center">A Ml-based model for predictiong the contribution of FRP reinforcements to shear resistance of RC beams</h3>
 
   <p align="center">
-    In this online app you can predict the total shear strength of RC beams strngthrnrd with EBR-FRP 
+    In this online app you can predict the contribution of FRP reinforcements to shear resistance of RC beams effortlessly and only providing the most relevent input parameters. 
+    for further information please refer to the paper in this link. 
     <br />
     <a href="https://share.streamlit.io/amirxdbx/dabasum_mlm/main/deploy.py"><strong>Explore the App »</strong></a>
     <br />

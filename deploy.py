@@ -59,7 +59,7 @@ with col2:
     wf_sf= st.number_input("width to spacing ratio:", value=0.53)
     hf= st.number_input("Height of FRP reinforcement (mm):", value=300)
     fcm= st.number_input("Concrete compressive strength (MPa)", value=39.7)
-    Config= st.radio('',options=("Fully-wrapped","U-wrapped","Side-bonded",index=1)) 
+    Config= st.radio('',options=("Fully-wrapped","U-wrapped","Side-bonded"),index=1) 
 
     
 values=pd.DataFrame({

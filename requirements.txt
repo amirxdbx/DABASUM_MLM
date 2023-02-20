@@ -1,4 +1,6 @@
 # This file may be used to create an environment using:
 streamlit==1.18.1
 pycaret==2.3.0
+transformers
+
 

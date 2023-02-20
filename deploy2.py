@@ -1,7 +1,6 @@
 from pycaret.regression import *
 import pandas as pd 
 from Functions import *
-from load_data import *
 import numpy as np
 import streamlit as st
 
@@ -13,15 +12,17 @@ def load_data(url):
     Main_data = pd.read_csv(url)
     return Main_data
 
-Main_data = load_data('excel/Main_data.csv')
+Main_data = load_data('Main_data.csv')
 
 @st.cache_resource
 def load_model_():
-    model = load_model('models/$Xgboost$')
+    model = load_model('$Xgboost$')
     return model
 
 tuned_model_ = load_model_()
     
+def unscalery(value,Label,NewDataset):
+    return np.exp(((value-0.1)*(np.log(NewDataset[Label]).max()-np.log(NewDataset[Label]).min()))+np.log(NewDataset[Label]).min())
 
 def calculate_area(values):    
     st.write(values)

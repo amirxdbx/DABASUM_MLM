@@ -1,6 +1,5 @@
 from pycaret.regression import *
 import pandas as pd 
-from Functions import *
 import numpy as np
 import streamlit as st
 

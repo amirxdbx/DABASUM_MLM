@@ -19,7 +19,9 @@ def load_model_():
     return model
 
 tuned_model_ = load_model_()
-    
+
+def cot(x): 
+    return 1/np.tan(x)
 def unscalery(value,Label,NewDataset):
     return np.exp(((value-0.1)*(np.log(NewDataset[Label]).max()-np.log(NewDataset[Label]).min()))+np.log(NewDataset[Label]).min())
 

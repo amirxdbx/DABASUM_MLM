@@ -13,12 +13,12 @@ def load_data(url):
 
 Main_data = load_data('Main_data.csv')
 
-@st.cache_resource
-def load_model_():
-    model = load_model('$Xgboost$')
-    return model
+# @st.cache_resource
+# def load_model_():
+#     model = load_model('$Xgboost$')
+#     return model
 
-tuned_model_ = load_model_()
+tuned_model_ =load_model('$Xgboost$')# load_model_()
     
 def unscalery(value,Label,NewDataset):
     return np.exp(((value-0.1)*(np.log(NewDataset[Label]).max()-np.log(NewDataset[Label]).min()))+np.log(NewDataset[Label]).min())

@@ -4,7 +4,7 @@ import numpy as np
 import streamlit as st
 
 
-st.set_page_config(page_title="FRP contribution to Shear resistance", page_icon=":guardsman:", layout="wide")
+st.set_page_config(page_title="FRP contribution to Shear resistance", page_icon=":guardsman:", layout="centered")
 
 @st.cache_data  
 def load_data(url):

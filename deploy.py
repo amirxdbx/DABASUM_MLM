@@ -15,7 +15,7 @@ Main_data = load_data('Main_data.csv')
 
 @st.cache_resource
 def load_model_():
-    model = load_model('$Xgboost$')
+    model = load_model('$Xgboost$.pkl')
     return model
 
 tuned_model_ = load_model_()

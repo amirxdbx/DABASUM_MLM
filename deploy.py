@@ -45,7 +45,7 @@ def calculate(values):
     return result
 
 st.write('Enter your beam data:')
-col1, col2, col3 = st.columns([2,2, 3])
+col1, col2, col3 = st.columns([1,1, 2.5])
 
 with col1:
     Af= st.number_input("Area of FRP (mm2):", value=42)

@@ -18,7 +18,7 @@ def load_model_():
     model = load_model('$Xgboost$')
     return model
 
-# tuned_model_ = load_model_()
+tuned_model_ = load_model_()
 
 def cot(x): 
     return 1/np.tan(x)

@@ -22,10 +22,11 @@ tuned_model_ = load_model_()
 
 def cot(x): 
     return 1/np.tan(x)
+
 def unscalery(value,Label,NewDataset):
     return np.exp(((value-0.1)*(np.log(NewDataset[Label]).max()-np.log(NewDataset[Label]).min()))+np.log(NewDataset[Label]).min())
 
-def calculate_area(values):    
+def calculate(values):    
     st.write(values)
     SFI = float(values.Af)/float(values.sf)+(float(values.Es)/float(values.Ef))*float(values.As)/float(values.ss)
     if values.Config [0]== 'Fully-wrapped':
@@ -83,5 +84,5 @@ with col3:
     st.button('Calculate', key='Calculate')
     out = st.empty()
     if st.session_state.get('Calculate'):
-        result = np.round(calculate_area(values), 2)
+        result = np.round(calculate(values), 2)
         out.text(f"Contribution of FRP to shear resistance: {result[0]} kN")

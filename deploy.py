@@ -4,7 +4,7 @@ import numpy as np
 import streamlit as st
 
 
-st.set_page_config(page_title="FRP contribution to Shear resistance", page_icon=":guardsman:", layout="centered")
+st.set_page_config(page_title="FRP contribution to Shear resistance", page_icon=":guardsman:", layout="wide")
 
 @st.cache_data  
 def load_data(url):
@@ -45,7 +45,7 @@ def calculate(values):
     return result
 
 st.write('Enter your beam data:')
-col1, col2, col3 = st.columns([1,1, 2.5])
+col1, col2, col3 = st.columns([2,2,3])
 
 with col1:
     Af= st.number_input("Area of FRP (mm2):", value=42)

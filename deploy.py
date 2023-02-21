@@ -13,10 +13,10 @@ def load_data(url):
 
 Main_data = load_data('Main_data.csv')
 
-# @st.cache_resource
-# def load_model_():
-#     model = load_model('$Xgboost$')
-#     return model
+@st.cache_resource
+def load_model_():
+    model = load_model('$Xgboost$')
+    return model
 
 # tuned_model_ = load_model_()
 

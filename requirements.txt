@@ -1,5 +1,5 @@
 # This file may be used to create an environment using:
 streamlit==1.18.1
-#pycaret==2.3.0
+pycaret==3.0.0rc7
 pycaret==3.0.0rc7
 xgboost==1.7.5

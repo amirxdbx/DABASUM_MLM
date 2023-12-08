@@ -70,9 +70,7 @@ values=pd.DataFrame({
     'b_fl_bw': [b_fl_bw],
     'a_d':a_d
 })
-    st.empty()
-    st.empty()
-    st.empty()
+
     st.button('Calculate', key='Calculate')
     out = st.empty()
     if st.session_state.get('Calculate'):

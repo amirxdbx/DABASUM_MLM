@@ -30,7 +30,7 @@ def calculate(values):
     Sample=pd.DataFrame(data={'A_fpl':[A_fpl],'w_s':[float(values.wf_sf)],'':[float(values.b_fl_b_w)],
                                   'a_d':[float(values.a_d)],
                                   'A_spl':[A_spl],'alpha':[float(values.alpha)],
-                                  ,'E_f':[float(values.E_f)]})
+                                  'E_f':[float(values.E_f)]})
     
     e_fe = unscalery((predict_model(tuned_model_,Sample).prediction_label))[0]
     result = e_fe*float(values.get('Ef'))*float(values.get('A_fpl'))*

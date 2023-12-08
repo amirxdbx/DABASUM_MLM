@@ -22,12 +22,8 @@ def unscalery(value):
 
 def calculate(values):    
     st.write(values)
-    A_fpl = float(values.A_fpl)
-    A_spl= float(values.A_spl)
-    b_fl/bw= float(values['b_fl/bw'])
-    
 
-    Sample=pd.DataFrame(data={'A_fpl':[A_fpl],'w_s':[float(values.wf_sf)],'':[float(values['b_fl/bw'])],
+    Sample=pd.DataFrame(data={'A_fpl':[A_fpl],'w_s':[float(values.wf_sf)],'b_fl/bw':[float(values['b_fl_bw'])],
                                   'a_d':[float(values.a_d)],
                                   'A_spl':[A_spl],
                                   'E_f':[float(values.E_f)]})
@@ -66,7 +62,7 @@ values=pd.DataFrame({
     'alpha': [np.radians(alpha)],
     'wf_sf': [wf_sf],
     'hf': [hf],
-    'b_fl/bw': [b_fl_bw],
+    'b_fl_bw': [b_fl_bw],
     'a_d':a_d
 })
 

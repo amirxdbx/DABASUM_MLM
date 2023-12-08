@@ -6,7 +6,7 @@ import pickle
 
 
 st.set_page_config(page_title="FRP contribution to Shear resistance", page_icon=":guardsman:", layout="wide")
-st.image('cross_section-ML.png')
+
 @st.cache_resource
 def load_model_():
     model = load_model('gbr')
@@ -31,7 +31,8 @@ def calculate(values):
     e_fe = unscalery(predict_model(tuned_model_,Sample).prediction_label[0])
     result = e_fe*float(values.get('E_f'))*float(values.get('A_fpl'))* float(values.get('hf'))*(1+cot(float(values.get('alpha'))))*np.sin(float(values.get('alpha')))
     return result
-
+    
+st.image('cross_section-ML.png')
 st.write('Enter your beam data:')
 col1, col2, col3 = st.columns([2,2,3])
 

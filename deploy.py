@@ -18,7 +18,7 @@ def cot(x):
     return 1/np.tan(x)
 
 def unscalery(value):
-    return np.exp(((value-0.1)*3.667910806940572)-7.900217131033686)
+    return 1# np.exp(((value-0.1)*3.667910806940572)-7.900217131033686)
 
 def calculate(values):    
     st.write(values)

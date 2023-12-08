@@ -47,7 +47,8 @@ with col1:
     ss= st.number_input("spacing of stirrups (mm):", value=300)
     A_spl=Asw/ss
 with col2:
-    alpha= st.number_input("FRP orientation:", value=90)
+    alpha_options = [45, 90]
+    alpha = st.selectbox("FRP orientation:", options=alpha_options, index=alpha_options.index(90))
     wf_sf= wf/sf
     hf= st.number_input("Height of FRP reinforcement (mm):", value=300)
     b_fl= st.number_input("Width of beam flange (mm):", value=300)

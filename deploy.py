@@ -43,7 +43,7 @@ with col1:
     E_f= st.number_input("Elasticity modulus of FRP (GPa):", value=230)
     Asw= st.number_input("Area of stirrups (mm2):", value=0)
     ss= st.number_input("spacing of stirrups (mm):", value=0)
-    A_spl=np.where(ss!=0,Asw/ss,0)
+    A_spl = np.where(ss != 0, Asw / ss, np.zeros_like(ss))
     
 with col2:
     alpha_options = [45, 90]

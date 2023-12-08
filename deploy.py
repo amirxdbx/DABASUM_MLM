@@ -15,7 +15,7 @@ def load_model_():
 tuned_model_ = load_model_()
 
 def cot(x): 
-    return 1/np.tan(np.radians(x))
+    return 1/np.tan(x)
 
 def unscalery(value):
     return np.exp(((value-0.1)*3.667910806940382)-7.900217131033494)
@@ -29,12 +29,11 @@ def calculate(values):
 
     Sample=pd.DataFrame(data={'A_fpl':[A_fpl],'w_s':[float(values.wf_sf)],'':[float(values.b_fl_b_w)],
                                   'a_d':[float(values.a_d)],
-                                  'A_spl':[A_spl],'alpha':[float(values.alpha)],
+                                  'A_spl':[A_spl],
                                   'E_f':[float(values.E_f)]})
     
     e_fe = unscalery((predict_model(tuned_model_,Sample).prediction_label))[0]
-    result = e_fe*float(values.get('Ef'))*float(values.get('A_fpl'))*
-            float(values.get('hf'))*(cot(45)+cot(float(values.get('alpha'))))*np.sin(np.radians(float(values.get('alpha'))))
+    result = e_fe*float(values.get('Ef'))*float(values.get('A_fpl'))* float(values.get('hf'))*(cot(45)+cot(float(values.get('alpha'))))*np.sin(float(values.get('alpha')))
     return result
 
 st.write('Enter your beam data:')
@@ -63,7 +62,7 @@ values=pd.DataFrame({
     'A_fpl':[A_fpl],
     'Ef': [Ef],
     'A_spl': [A_spl],
-    'alpha': [alpha],
+    'alpha': [np.radians(alpha)],
     'wf_sf': [wf_sf],
     'hf': [hf],
     'b_fl_b_w': [b_fl_b_w],

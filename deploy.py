@@ -32,7 +32,8 @@ def calculate(values):
     result = e_fe*float(values.get('E_f'))*float(values.get('A_fpl'))* float(values.get('hf'))*(1+cot(float(values.get('alpha'))))*np.sin(float(values.get('alpha')))
     return result
     
-st.image('cross_section-ML.png')
+st.image('cross_section-ML.png', caption='Beams characteristic')
+
 st.write('Enter your beam data:')
 col1, col2, col3 = st.columns([2,2,3])
 

@@ -42,9 +42,11 @@ def calculate(values):
     result = e_fe*float(values.get('E_f'))*float(values.get('A_fpl'))* float(values.get('hf'))*(1+cot(float(values.get('alpha'))))*np.sin(float(values.get('alpha')))
     return result
     
-st.image(resized_image, caption='Beams characteristic',use_column_width ='auto')
+# Center the image
+st.markdown("<h1 style='text-align: center;'>Beams characteristic</h1>", unsafe_allow_html=True)
+st.image(resized_image, caption='', use_column_width ='auto')
+st.markdown("<h1 style='text-align: center;'>Enter your beam data:</h1>", unsafe_allow_html=True)
 
-st.write('Enter your beam data:')
 col1, col2, col3, col4,col5= st.columns([2,2,2,2,4])
 
 with col1:

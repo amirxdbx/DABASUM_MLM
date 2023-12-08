@@ -36,23 +36,23 @@ st.write('Enter your beam data:')
 col1, col2, col3 = st.columns([2,2,3])
 
 with col1:
-    tf= st.number_input("Thickness of FRP (mm):", value=0.1)
-    sf= st.number_input("sf (mm):", value=114)
-    wf= st.number_input("wf (mm):", value=114)
+    tf= st.number_input("Thickness of FRP (mm):", value=0.168)
+    sf= st.number_input("sf (mm):", value=150)
+    wf= st.number_input("wf (mm):", value=150)
     A_fpl=2*tf*wf/sf
-    E_f= st.number_input("Elasticity modulus of FRP (GPa):", value=218.4)
-    Asw= st.number_input("Area of stirrups (mm2):", value=56.5)
-    ss= st.number_input("spacing of stirrups (mm):", value=300)
+    E_f= st.number_input("Elasticity modulus of FRP (GPa):", value=230)
+    Asw= st.number_input("Area of stirrups (mm2):", value=0)
+    ss= st.number_input("spacing of stirrups (mm):", value=0)
     A_spl=np.where(ss!=0,Asw/ss,0)
     
 with col2:
     alpha_options = [45, 90]
     alpha = st.selectbox("FRP orientation:", options=alpha_options, index=alpha_options.index(90))
     wf_sf= wf/sf
-    hf= st.number_input("Height of FRP reinforcement (mm):", value=300)
-    b_fl= st.number_input("Width of beam flange (mm):", value=300)
-    b_w= st.number_input("Width of beam web(mm):", value=300)
-    a_d= st.number_input("Shear span to depth ratio:", value=3)
+    hf= st.number_input("Height of FRP reinforcement (mm):", value=250)
+    b_fl= st.number_input("Width of beam flange (mm):", value=150)
+    b_w= st.number_input("Width of beam web(mm):", value=150)
+    a_d= st.number_input("Shear span to depth ratio:", value=2.27)
     b_fl_bw=b_fl/b_w
     
 values=pd.DataFrame({

@@ -42,7 +42,11 @@ with col1:
     sf= st.number_input("sf (mm):", value=150)
     wf= st.number_input("wf (mm):", value=150)
     A_fpl=2*tf*wf/sf
-    E_f= st.number_input("Elasticity modulus of FRP (GPa):", value=230)
+    E_f= st.number_input("Elasticity modulus of FRP (GPa):", value=230)    
+    alpha_options = [45, 90]
+    alpha = st.selectbox("FRP orientation:", options=alpha_options, index=alpha_options.index(90))
+    wf_sf= wf/sf
+    hf= st.number_input("Height of FRP reinforcement (mm):", value=250)
 with col2:
     Asw= st.number_input("Area of stirrups (mm2):", value=0)
     ss= st.number_input("spacing of stirrups (mm):", value=0)
@@ -52,15 +56,18 @@ with col2:
         A_spl =Asw / ss
     
 with col3:
-    alpha_options = [45, 90]
-    alpha = st.selectbox("FRP orientation:", options=alpha_options, index=alpha_options.index(90))
-    wf_sf= wf/sf
-    hf= st.number_input("Height of FRP reinforcement (mm):", value=250)
     b_fl= st.number_input("Width of beam flange (mm):", value=150)
     b_w= st.number_input("Width of beam web(mm):", value=150)
     a_d= st.number_input("Shear span to depth ratio:", value=2.27)
     b_fl_bw=b_fl/b_w
     
+with col4:
+    st.button('Calculate', key='Calculate')
+    out = st.empty()
+    if st.session_state.get('Calculate'):
+        result = np.round(calculate(values), 2)
+        out.text(f"Contribution of FRP to shear resistance: \n {result} kN")
+
 values=pd.DataFrame({
     'A_fpl':[A_fpl],
     'E_f': [E_f],
@@ -71,10 +78,3 @@ values=pd.DataFrame({
     'b_fl_bw': [b_fl_bw],
     'a_d':a_d
 })
-
-with col4:
-    st.button('Calculate', key='Calculate')
-    out = st.empty()
-    if st.session_state.get('Calculate'):
-        result = np.round(calculate(values), 2)
-        out.text(f"Contribution of FRP to shear resistance: \n {result} kN")

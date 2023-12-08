@@ -35,7 +35,7 @@ def calculate(values):
 st.image('cross_section-ML.png', caption='Beams characteristic',use_column_width ='auto')
 
 st.write('Enter your beam data:')
-col1, col2, col3 = st.columns([2,2,3])
+col1, col2= st.columns([2,2])
 
 with col1:
     tf= st.number_input("Thickness of FRP (mm):", value=0.168)
@@ -70,8 +70,6 @@ values=pd.DataFrame({
     'b_fl_bw': [b_fl_bw],
     'a_d':a_d
 })
-
-with col3:
     st.empty()
     st.empty()
     st.empty()

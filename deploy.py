@@ -13,7 +13,7 @@ def resize_image(image, max_size=(600, 400)):
     
 # Load and resize the image
 image = Image.open('cross_section-ML.png')
-resized_image = resize_image(image, size=(600, 400))
+resized_image = resize_image(image, max_size=(600, 400))
 
 st.set_page_config(page_title="FRP contribution to Shear resistance", page_icon=":guardsman:", layout="wide")
 

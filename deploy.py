@@ -24,10 +24,10 @@ def calculate(values):
     st.write(values)
     A_fpl = float(values.A_fpl)
     A_spl= float(values.A_spl)
-    b_fl_b_w= float(values.b_fl_b_w)
+    b_fl/bw= float(values['b_fl/bw'])
     
 
-    Sample=pd.DataFrame(data={'A_fpl':[A_fpl],'w_s':[float(values.wf_sf)],'':[float(values.b_fl_b_w)],
+    Sample=pd.DataFrame(data={'A_fpl':[A_fpl],'w_s':[float(values.wf_sf)],'':[float(values['b_fl/bw'])],
                                   'a_d':[float(values.a_d)],
                                   'A_spl':[A_spl],
                                   'E_f':[float(values.E_f)]})
@@ -48,6 +48,7 @@ with col1:
     Asw= st.number_input("Area of stirrups (mm2):", value=56.5)
     ss= st.number_input("spacing of stirrups (mm):", value=300)
     A_spl=Asw/ss
+    
 with col2:
     alpha_options = [45, 90]
     alpha = st.selectbox("FRP orientation:", options=alpha_options, index=alpha_options.index(90))
@@ -56,7 +57,7 @@ with col2:
     b_fl= st.number_input("Width of beam flange (mm):", value=300)
     b_w= st.number_input("Width of beam web(mm):", value=300)
     a_d= st.number_input("Shear span to depth ratio:", value=3)
-    b_fl_b_w=b_fl/b_w
+    b_fl_bw=b_fl/b_w
     
 values=pd.DataFrame({
     'A_fpl':[A_fpl],
@@ -65,7 +66,7 @@ values=pd.DataFrame({
     'alpha': [np.radians(alpha)],
     'wf_sf': [wf_sf],
     'hf': [hf],
-    'b_fl_b_w': [b_fl_b_w],
+    'b_fl/bw': [b_fl_bw],
     'a_d':a_d
 })
 

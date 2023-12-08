@@ -14,26 +14,28 @@ def load_model_():
 
 tuned_model_ = load_model_()
 
-# def cot(x): 
-#     return 1/np.tan(x)
+def cot(x): 
+    return 1/np.tan(np.radians(x))
 
-# def unscalery(value):
-#     return np.exp(((value-0.1)*3.667910806940382)-7.900217131033494)
+def unscalery(value):
+    return np.exp(((value-0.1)*3.667910806940382)-7.900217131033494)
 
-# def calculate(values):    
-#     st.write(values)
-#     A_fpl = float(values.Af)/float(values.sf)
-#     A_spl= float(values.As)/float(values.ss)
-#     b_fl_b_w= float(values.b_fl)/float(values.b_w)
+def calculate(values):    
+    st.write(values)
+    A_fpl = float(values.A_fpl)
+    A_spl= float(values.A_spl)
+    b_fl_b_w= float(values.b_fl_b_w)
     
 
-    # dataSample=pd.DataFrame(data={'A_fpl':[A_fpl],'A_spl':[A_spl],'alpha':[float(values.alpha)],
-    #                               'w_s':[float(values.wf_sf)],'hf':[float(values.hf)],'S_U_O':[S_U_O],
-    #                               'E_f':[float(values.E_f)]})
+    Sample=pd.DataFrame(data={'A_fpl':[A_fpl],'w_s':[float(values.wf_sf)],'':[float(values.b_fl_b_w)],
+                                  'a_d':[float(values.a_d)],
+                                  'A_spl':[A_spl],'alpha':[float(values.alpha)],
+                                  ,'E_f':[float(values.E_f)]})
     
-    # e_fe = unscalery((predict_model(tuned_model_,dataSample).prediction_label))[0]
-    # result = e_fe*float(values.get('Ef'))*float(values.get('A_fpl'))*np.sin(np.radians(dataSample.alpha))*dataSample.hf*(1+cot(np.radians(dataSample.alpha)))*np.sin(np.radians(dataSample.alpha))
-#     return result
+    e_fe = unscalery((predict_model(tuned_model_,Sample).prediction_label))[0]
+    result = e_fe*float(values.get('Ef'))*float(values.get('A_fpl'))*
+            float(values.get('hf'))*(cot(45)+cot(float(values.get('alpha'))))*np.sin(np.radians(float(values.get('alpha'))))
+    return result
 
 st.write('Enter your beam data:')
 col1, col2, col3 = st.columns([2,2,3])
@@ -54,6 +56,7 @@ with col2:
     hf= st.number_input("Height of FRP reinforcement (mm):", value=300)
     b_fl= st.number_input("Width of beam flange (mm):", value=300)
     b_w= st.number_input("Width of beam web(mm):", value=300)
+    a_d= st.number_input("Shear span to depth ratio:", value=3)
     b_fl_b_w=b_fl/b_w
     
 values=pd.DataFrame({
@@ -63,8 +66,8 @@ values=pd.DataFrame({
     'alpha': [alpha],
     'wf_sf': [wf_sf],
     'hf': [hf],
-    'b_fl_b_w': [b_fl_b_w]
-    
+    'b_fl_b_w': [b_fl_b_w],
+    'a_d':a_d
 })
 
 with col3:

@@ -6,7 +6,7 @@ import pickle
 
 
 st.set_page_config(page_title="FRP contribution to Shear resistance", page_icon=":guardsman:", layout="wide")
-
+st.image('cross_section-ML.png')
 @st.cache_resource
 def load_model_():
     model = load_model('gbr')

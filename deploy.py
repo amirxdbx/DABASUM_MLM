@@ -60,7 +60,8 @@ with col3:
     b_w= st.number_input("Width of beam web(mm):", value=150)
     a_d= st.number_input("Shear span to depth ratio:", value=2.27)
     b_fl_bw=b_fl/b_w
- values=pd.DataFrame({
+    
+values=pd.DataFrame({
     'A_fpl':[A_fpl],
     'E_f': [E_f],
     'A_spl': [A_spl],

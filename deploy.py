@@ -8,7 +8,7 @@ st.set_page_config(page_title="FRP contribution to Shear resistance", page_icon=
 
 @st.cache_resource
 def load_model_():
-    model = load_model('GB.pkl')
+    model = load_model('$gb$.pkl')
     return model
 
 tuned_model_ = load_model_()

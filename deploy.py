@@ -17,7 +17,7 @@ def cot(x):
     return 1/np.tan(x)
 
 def unscalery(value,Label,NewDataset):
-    return np.exp(((value-0.1)*(np.log(NewDataset[Label]).max()-np.log(NewDataset[Label]).min()))+np.log(NewDataset[Label]).min())
+    return np.exp(((value-0.1)*3.667910806940382)-7.900217131033494)
 
 # def calculate(values):    
 #     st.write(values)

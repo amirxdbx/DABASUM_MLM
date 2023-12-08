@@ -1,9 +1,16 @@
+from PIL import Image
 from pycaret.regression import *
 import pandas as pd 
 import numpy as np
 import streamlit as st
 import pickle
 
+# Function to resize image
+def resize_image(image, size=(300, 300)):
+    return image.resize(size)
+# Load and resize the image
+image = Image.open('cross_section-ML.png')
+resized_image = resize_image(image, size=(600, 400))
 
 st.set_page_config(page_title="FRP contribution to Shear resistance", page_icon=":guardsman:", layout="wide")
 
@@ -32,7 +39,7 @@ def calculate(values):
     result = e_fe*float(values.get('E_f'))*float(values.get('A_fpl'))* float(values.get('hf'))*(1+cot(float(values.get('alpha'))))*np.sin(float(values.get('alpha')))
     return result
     
-st.image('cross_section-ML.png', caption='Beams characteristic',use_column_width ='auto')
+st.image(resized_image, caption='Beams characteristic',use_column_width ='auto')
 
 st.write('Enter your beam data:')
 col1, col2, col3, col4,col5= st.columns([2,2,2,2,4])

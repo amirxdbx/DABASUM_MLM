@@ -60,15 +60,7 @@ with col3:
     b_w= st.number_input("Width of beam web(mm):", value=150)
     a_d= st.number_input("Shear span to depth ratio:", value=2.27)
     b_fl_bw=b_fl/b_w
-    
-with col4:
-    st.button('Calculate', key='Calculate')
-    out = st.empty()
-    if st.session_state.get('Calculate'):
-        result = np.round(calculate(values), 2)
-        out.text(f"Contribution of FRP to shear resistance: \n {result} kN")
-
-values=pd.DataFrame({
+ values=pd.DataFrame({
     'A_fpl':[A_fpl],
     'E_f': [E_f],
     'A_spl': [A_spl],
@@ -77,4 +69,12 @@ values=pd.DataFrame({
     'hf': [hf],
     'b_fl_bw': [b_fl_bw],
     'a_d':a_d
-})
+})   
+with col4:
+    st.button('Calculate', key='Calculate')
+    out = st.empty()
+    if st.session_state.get('Calculate'):
+        result = np.round(calculate(values), 2)
+        out.text(f"Contribution of FRP to shear resistance: \n {result} kN")
+
+

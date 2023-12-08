@@ -2,6 +2,7 @@ from pycaret.regression import *
 import pandas as pd 
 import numpy as np
 import streamlit as st
+import pickle
 
 
 st.set_page_config(page_title="FRP contribution to Shear resistance", page_icon=":guardsman:", layout="wide")

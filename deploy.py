@@ -18,7 +18,7 @@ def cot(x):
     return 1/np.tan(x)
 
 def unscalery(value):
-    return 1# np.exp(((value-0.1)*3.667910806940572)-7.900217131033686)
+    return np.exp(((value-0.1)*3.667910806940572)-7.900217131033686)
 
 def calculate(values):    
     st.write(values)
@@ -28,7 +28,7 @@ def calculate(values):
                                   'A_spl':[A_spl],
                                   'E_f':[float(values.E_f)]})
     
-    e_fe = unscalery((predict_model(tuned_model_,Sample).prediction_label))[0]
+    e_fe = unscalery((predict_model(tuned_model_,Sample).prediction_label))
     result = e_fe#*float(values.get('E_f'))*float(values.get('A_fpl'))* float(values.get('hf'))*(cot(45)+cot(float(values.get('alpha'))))*np.sin(float(values.get('alpha')))
     return result
 

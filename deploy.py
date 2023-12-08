@@ -44,7 +44,7 @@ with col1:
     sf= st.number_input("sf (mm):", value=114)
     wf= st.number_input("wf (mm):", value=114)
     A_fpl=2*tf*wf/sf
-    Ef= st.number_input("Elasticity modulus of FRP (GPa):", value=218.4)
+    E_f= st.number_input("Elasticity modulus of FRP (GPa):", value=218.4)
     Asw= st.number_input("Area of stirrups (mm2):", value=56.5)
     ss= st.number_input("spacing of stirrups (mm):", value=300)
     A_spl=Asw/ss
@@ -60,7 +60,7 @@ with col2:
     
 values=pd.DataFrame({
     'A_fpl':[A_fpl],
-    'Ef': [Ef],
+    'E_f': [E_f],
     'A_spl': [A_spl],
     'alpha': [np.radians(alpha)],
     'wf_sf': [wf_sf],

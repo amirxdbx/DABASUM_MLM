@@ -44,33 +44,32 @@ st.write('Enter your beam data:')
 col1, col2, col3 = st.columns([2,2,3])
 
 with col1:
-    Af= st.number_input("Area of FRP (mm2):", value=42)
+    tf= st.number_input("Thickness of FRP (mm):", value=0.1)
     sf= st.number_input("sf (mm):", value=114)
-    Es= st.number_input("Elasticity modulus of Steel (GPa):", value=200)
+    wf= st.number_input("wf (mm):", value=114)
+    A_fpl=2*tf*wf/sf
     Ef= st.number_input("Elasticity modulus of FRP (GPa):", value=218.4)
-    As= st.number_input("Area of stirrups (mm2):", value=56.5)
-    ss= st.number_input("ss (mm):", value=300)
+    Asw= st.number_input("Area of stirrups (mm2):", value=56.5)
+    ss= st.number_input("spacing of stirrups (mm):", value=300)
+    A_spl=Asw/ss
 with col2:
-    
     alpha= st.number_input("FRP orientation:", value=90)
-    wf_sf= st.number_input("width to spacing ratio:", value=0.53)
+    wf_sf= wf/sf
     hf= st.number_input("Height of FRP reinforcement (mm):", value=300)
-    fcm= st.number_input("Concrete compressive strength (MPa)", value=39.7)
-    Config= st.radio('',options=("Fully-wrapped","U-wrapped","Side-bonded"),index=1) 
-
+    b_fl= st.number_input("Width of beam flange (mm):", value=300)
+    b_w= st.number_input("Width of beam web(mm):", value=300)
+    b_fl_b_w=b_fl/b_w
     
 values=pd.DataFrame({
-    'Af': [Af],
-    'sf': [sf],
-    'Es': [Es],
+    'A_fpl':[A_fpl],
     'Ef': [Ef],
-    'As': [As],
-    'ss': [ss],
+    'A_spl': [A_spl],
     'alpha': [alpha],
     'wf_sf': [wf_sf],
     'hf': [hf],
-    'fcm': [fcm],
     'Config': [Config],
+    'b_fl_b_w': [b_fl_b_w]
+    
 })
 
 with col3:

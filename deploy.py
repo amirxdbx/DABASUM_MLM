@@ -28,7 +28,7 @@ def calculate(values):
                                   'A_spl':[A_spl],
                                   'E_f':[float(values.E_f)]})
     
-    e_fe = unscalery((predict_model(tuned_model_,Sample).prediction_label))
+    e_fe = predict_model(tuned_model_,Sample) #unscalery((predict_model(tuned_model_,Sample).prediction_label))
     result = e_fe#*float(values.get('E_f'))*float(values.get('A_fpl'))* float(values.get('hf'))*(cot(45)+cot(float(values.get('alpha'))))*np.sin(float(values.get('alpha')))
     return result
 

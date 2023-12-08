@@ -25,12 +25,6 @@ st.set_page_config(page_title="FRP contribution to Shear resistance", page_icon=
 #     A_spl= float(values.As)/float(values.ss)
 #     b_fl_b_w= float(values.b_fl)/float(values.b_w)
     
-#     if values.Config [0]== 'Fully-wrapped':
-#         S_U_O = 0
-#     elif values.Config [0]== 'U-wrapped':
-#         S_U_O = 1
-#     else: 
-#         S_U_O = 2
 
     # dataSample=pd.DataFrame(data={'A_fpl':[A_fpl],'A_spl':[A_spl],'alpha':[float(values.alpha)],
     #                               'w_s':[float(values.wf_sf)],'hf':[float(values.hf)],'S_U_O':[S_U_O],
@@ -67,7 +61,6 @@ values=pd.DataFrame({
     'alpha': [alpha],
     'wf_sf': [wf_sf],
     'hf': [hf],
-    'Config': [Config],
     'b_fl_b_w': [b_fl_b_w]
     
 })

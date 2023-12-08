@@ -35,7 +35,7 @@ def calculate(values):
 st.image('cross_section-ML.png', caption='Beams characteristic',use_column_width ='auto')
 
 st.write('Enter your beam data:')
-col1, col2= st.columns([2,2])
+col1, col2, col3, col4= st.columns([2,2,2,2])
 
 with col1:
     tf= st.number_input("Thickness of FRP (mm):", value=0.168)
@@ -43,6 +43,7 @@ with col1:
     wf= st.number_input("wf (mm):", value=150)
     A_fpl=2*tf*wf/sf
     E_f= st.number_input("Elasticity modulus of FRP (GPa):", value=230)
+with col2:
     Asw= st.number_input("Area of stirrups (mm2):", value=0)
     ss= st.number_input("spacing of stirrups (mm):", value=0)
     if ss==0:
@@ -50,7 +51,7 @@ with col1:
     else: 
         A_spl =Asw / ss
     
-with col2:
+with col3:
     alpha_options = [45, 90]
     alpha = st.selectbox("FRP orientation:", options=alpha_options, index=alpha_options.index(90))
     wf_sf= wf/sf
@@ -71,8 +72,9 @@ values=pd.DataFrame({
     'a_d':a_d
 })
 
-st.button('Calculate', key='Calculate')
-out = st.empty()
-if st.session_state.get('Calculate'):
-    result = np.round(calculate(values), 2)
-    out.text(f"Contribution of FRP to shear resistance: \n {result} kN")
+with col4:
+    st.button('Calculate', key='Calculate')
+    out = st.empty()
+    if st.session_state.get('Calculate'):
+        result = np.round(calculate(values), 2)
+        out.text(f"Contribution of FRP to shear resistance: \n {result} kN")

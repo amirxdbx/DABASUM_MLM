@@ -5,9 +5,12 @@ import numpy as np
 import streamlit as st
 import pickle
 
-# Function to resize image
-def resize_image(image, size=(300, 300)):
-    return image.resize(size)
+def resize_image(image, max_size=(600, 400)):
+    original_size = image.size
+    ratio = min(max_size[0] / original_size[0], max_size[1] / original_size[1])
+    new_size = tuple(int(dim * ratio) for dim in original_size)
+    return image.resize(new_size)
+    
 # Load and resize the image
 image = Image.open('cross_section-ML.png')
 resized_image = resize_image(image, size=(600, 400))

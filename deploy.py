@@ -16,12 +16,12 @@ resized_image = resize_image(image, max_size=(600, 400))
 
 st.set_page_config(page_title="FRP contribution to Shear resistance", page_icon=":guardsman:", layout="wide")
 
-@st.cache_resource
-def load_model_():
-    model = load_model('synth_xgboost')
-    return model
+# @st.cache_resource
+# def load_model_():
+#     model = load_model('synth_xgboost')
+#     return model
 
-tuned_model_ = load_model_()
+# tuned_model_ = load_model_()
 
 def cot(x): 
     return 1/np.tan(x)

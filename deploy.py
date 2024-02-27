@@ -65,8 +65,8 @@ with col2:
     E_f= st.number_input("Elasticity modulus of FRP (GPa):", value=218.4)    
     alpha_options = [45, 90]
     alpha = st.selectbox("FRP orientation:", options=alpha_options, index=alpha_options.index(90))
-    config_options = ['Fully wrapped', 'U-wrapped', 'Side-bonded']
-    S_U_O = st.selectbox("FRP configuration:", options=config_options, index=config_options.index('Fully wrapped')
+    config_options = [0, 1, 2]
+    S_U_O = st.selectbox("FRP configuration:", options=config_options, index=config_options.index(0)
 
 # with col3:
 #     Asw = st.number_input("Area of stirrups (mm2):", value=56.5)

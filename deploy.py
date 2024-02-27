@@ -1,9 +1,9 @@
-from PIL import Image
-from pycaret.regression import *
-import pandas as pd 
-import numpy as np
-import streamlit as st
-import pickle
+# from PIL import Image
+# from pycaret.regression import *
+# import pandas as pd 
+# import numpy as np
+# import streamlit as st
+# import pickle
 
 # def resize_image(image, max_size=(600, 400)):
 #     original_size = image.size

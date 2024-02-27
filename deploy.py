@@ -17,36 +17,36 @@ resized_image = resize_image(image, max_size=(600, 400))
 
 st.set_page_config(page_title="FRP contribution to Shear resistance", page_icon=":guardsman:", layout="wide")
 
-# @st.cache_resource
-# def load_model_():
-#     model = load_model('synth_xgboost')
-#     return model
+@st.cache_resource
+def load_model_():
+    model = load_model('synth_xgboost')
+    return model
 
-# tuned_model_ = load_model_()
+tuned_model_ = load_model_()
 
-# def cot(x): 
-#     return 1/np.tan(x)
+def cot(x): 
+    return 1/np.tan(x)
 
-# def unscalery(value):
-#     return np.exp(((value-0.001)*3.3803681237888172)-7.902757481871264)
+def unscalery(value):
+    return np.exp(((value-0.001)*3.3803681237888172)-7.902757481871264)
 
-# def calculate(values):    
-#     st.write(values)
+def calculate(values):    
+    st.write(values)
 
-#     Sample=pd.DataFrame(data={'E_f':[float(values.E_f)],
-#                               'Rho_f':[float(values.Rho_f)],
-#                               'fcm':[float(values.fcm)],
-#                               'Rho_sw':[float(values.Rho_sw)],
-#                               'Rho_sl':[float(values.Rho_sl)],
-#                               'hf':[float(values.hf)],
-#                               'b_fl/bw':[float(values['b_fl_bw'])],
-#                               'S_U_O':[float(values.S_U_O)],
-#                               'alpha':[float(values.alpha)],
-#                               'f_yy':[float(values.f_yy)]})
+    Sample=pd.DataFrame(data={'E_f':[float(values.E_f)],
+                              'Rho_f':[float(values.Rho_f)],
+                              'fcm':[float(values.fcm)],
+                              'Rho_sw':[float(values.Rho_sw)],
+                              'Rho_sl':[float(values.Rho_sl)],
+                              'hf':[float(values.hf)],
+                              'b_fl/bw':[float(values['b_fl_bw'])],
+                              'S_U_O':[float(values.S_U_O)],
+                              'alpha':[float(values.alpha)],
+                              'f_yy':[float(values.f_yy)]})
     
-#     e_fe = unscalery(predict_model(tuned_model_,Sample).prediction_label[0])
-#     result = e_fe*float(values.get('E_f'))*float(values.get('A_fpl'))* float(values.get('hf'))*(1+cot(float(values.get('alpha'))))*np.sin(float(values.get('alpha')))
-#     return result
+    e_fe = unscalery(predict_model(tuned_model_,Sample).prediction_label[0])
+    result = e_fe*float(values.get('E_f'))*float(values.get('A_fpl'))* float(values.get('hf'))*(1+cot(float(values.get('alpha'))))*np.sin(float(values.get('alpha')))
+    return result
     
 # # Center the image
 # st.markdown("<h1 style='text-align: center;'>Beams characteristic</h1>", unsafe_allow_html=True)

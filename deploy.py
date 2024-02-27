@@ -18,7 +18,7 @@ st.set_page_config(page_title="FRP contribution to Shear resistance", page_icon=
 
 @st.cache_resource
 def load_model_():
-    model = load_model('xgboost')
+    model = load_model('synth_xgboost')
     return model
 
 tuned_model_ = load_model_()

@@ -2,3 +2,4 @@
 pycaret
 #==3.0.0rc7
 streamlit
+xgboost

@@ -65,10 +65,13 @@ with col2:
     E_f= st.number_input("Elasticity modulus of FRP (GPa):", value=218.4)    
     alpha_options = [45, 90]
     alpha = st.selectbox("FRP orientation:", options=alpha_options, index=alpha_options.index(90))
+    config_options = ['Fully wrapped', 'U-wrapped', 'Side-bonded']
+    S_U_O = st.selectbox("FRP configuration:", options=alpha_options, index=alpha_options.index('Fully wrapped')
 
 with col3:
     Asw= st.number_input("Area of stirrups (mm2):", value=56.5)
-    ss= st.number_input("spacing of stirrups (mm):", value=300)
+    ss= st.number_input("Spacing of stirrups (mm):", value=300)
+    f_yy= st.number_input("Steel yield strength (MPa):", value=400)
     if ss==0:
         Rho_sw =0
     else: 
@@ -77,15 +80,23 @@ with col3:
 with col4:
     b_fl= st.number_input("Width of beam flange (mm):", value=450)
     b_w= st.number_input("Width of beam web(mm):", value=180)
+    fcm= st.number_input("Concrete compressive strength (MPa):", value=30)
+    
     b_fl_bw=b_fl/b_w
+    Rho_sl= st.number_input("Ratio of longitudinal steel(mm):", value=0.05)
     
 values=pd.DataFrame({
     'A_fpl':[A_fpl],
     'E_f': [E_f],
     'Rho_sw': [Rho_sw],
+    'Rho_sl': [Rho_sw],
     'alpha': [np.radians(alpha)],
     'hf': [hf],
     'b_fl_bw': [b_fl_bw],
+    'S_U_O':[np.where(S_U_O=='Fully wrapped',0,np.where(S_U_O=='U-wrapped',1,2))],
+    'Rho_f':[A_fpl/b_w],
+    'fcm':[fcm],
+    'f_yy': [f_yy]
 })   
 
 with col5:

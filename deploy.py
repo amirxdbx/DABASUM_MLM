@@ -72,8 +72,9 @@ with col3:
     Asw= st.number_input("Area of stirrups (mm2):", value=56.5)
     ss= st.number_input("Spacing of stirrups (mm):", value=300)
     f_yy= st.number_input("Steel yield strength (MPa):", value=400)
+    
     if ss==0:
-        Rho_sw =0
+        Rho_sw = 0
     else: 
         A_spl =Rho_sw / ss
     
@@ -105,5 +106,3 @@ with col5:
     if st.session_state.get('Calculate'):
         result = np.round(calculate(values), 2)
         out.text(f"Contribution of FRP to shear resistance: \n {result} kN")
-
-

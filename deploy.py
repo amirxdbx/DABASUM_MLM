@@ -57,8 +57,8 @@ st.markdown("<h1 style='text-align: center;'>Enter your beam data:</h1>", unsafe
 col1, col2, col3, col4,col5= st.columns([2,2,2,2,4])
 
 with col1:
-    Model_options=[Xgboost_real, XGBoost_syn]
-    model=st.selectbox("Model:", options=Model_options, index=Model_options.index(XGBoost_syn))
+    Model_options=['Xgboost_real', 'XGBoost_syn']
+    model=st.selectbox("Model:", options=Model_options, index=Model_options.index('XGBoost_syn'))
     if model=='XGBoost_syn':
         tuned_model_syn
     else: 

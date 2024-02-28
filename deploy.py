@@ -34,8 +34,6 @@ def cot(x):
 
 def unscalery(value):
     return np.exp(((value-0.001)*3.3803681237888172)-7.902757481871264)
-Model_options=[Xgboost_real, XGBoost_syn]
-tuned_model_=st.selectbox("Model:", options=Model_options, index=Model_options.index(XGBoost_syn))
 
 def calculate(values):    
     st.write(values)
@@ -59,6 +57,8 @@ def calculate(values):
 st.markdown("<h1 style='text-align: center;'>Beams characteristic</h1>", unsafe_allow_html=True)
 st.image(resized_image, caption='', use_column_width ='auto')
 st.markdown("<h1 style='text-align: center;'>Enter your beam data:</h1>", unsafe_allow_html=True)
+Model_options=[Xgboost_real, XGBoost_syn]
+tuned_model_=st.selectbox("Model:", options=Model_options, index=Model_options.index(XGBoost_syn))
 
 col1, col2, col3, col4,col5= st.columns([2,2,2,2,4])
 

@@ -61,25 +61,25 @@ with col1:
     A_fpl=2*tf*wf/sf
     hf= st.number_input("Height of FRP reinforcement hf (mm):", value=300)
 with col2: 
-    E_f= st.number_input("Elasticity modulus of FRP (GPa):", value=218.4)    
+    E_f= st.number_input("Elasticity modulus of FRP Ef (GPa):", value=218.4)    
     alpha_options = [45, 90]
     alpha = st.selectbox("Fibres orientation:", options=alpha_options, index=alpha_options.index(90))
     config_options = ['Fully wrapped', 'U-wrapped', 'Side-bonded']
-    S_U_O = st.selectbox("FRP configuration:", options=config_options, index=config_options.index('Fully wrapped'))
+    S_U_O = st.selectbox("FRP configuration:", options=config_options, index=config_options.index('U-wrapped'))
 
     
 with col3:
     b_fl= st.number_input("Width of beam flange (mm):", value=450)
     b_w= st.number_input("Width of beam web(mm):", value=180)
-    fcm= st.number_input("Concrete compressive strength (MPa):", value=30)
+    fcm= st.number_input("Concrete compressive strength (MPa):", value=39.7)
     
     b_fl_bw=b_fl/b_w
-    Rho_sl= st.number_input("Ratio of longitudinal steel(mm):", value=0.05)
+    Rho_sl= st.number_input("Ratio of longitudinal steel(mm):", value=0.0279)
 
 with col4:
     Asw = st.number_input("Area of stirrups (mm2):", value=56.5)
     ss = st.number_input("Spacing of stirrups (mm):", value=300)
-    f_yy = st.number_input("Steel yield strength fswy (MPa):", value=400)
+    f_yy = st.number_input("Steel yield strength fswy (MPa):", value=542)
     if ss==0:
         Rho_sw = 0
     else: 

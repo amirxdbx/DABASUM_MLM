@@ -17,17 +17,13 @@ resized_image = resize_image(image, max_size=(600, 400))
 st.set_page_config(page_title="FRP contribution to Shear resistance", page_icon=":guardsman:", layout="wide")
 
 @st.cache_resource
-def load_model_syn():
-    model = load_model('synth_xgboost')
-    return model
-    
-@st.cache_resource
-def load_model_real():
-    model = load_model('xgboost')
-    return model
+def load_model_():
+    model_syn = load_model('synth_xgboost')
+    model_real= load_model('xgboost')
+    return model_syn, model_real
 
-tuned_model_syn = load_model_syn()
-tuned_model_real = load_model_real()
+tuned_model_syn = load_model_()[0]
+tuned_model_real = load_model_()[1]
 
 def cot(x): 
     return 1/np.tan(x)
@@ -62,8 +58,11 @@ col1, col2, col3, col4,col5= st.columns([2,2,2,2,4])
 
 with col1:
     Model_options=[Xgboost_real, XGBoost_syn]
-    tuned_model_=st.selectbox("Model:", options=Model_options, index=Model_options.index(XGBoost_syn))
-
+    model=st.selectbox("Model:", options=Model_options, index=Model_options.index(XGBoost_syn))
+    if model=='XGBoost_syn':
+        tuned_model_syn
+    else: 
+        tuned_model_real
     tf= st.number_input("Thickness of FRP (mm):", value=0.352)
     sf= st.number_input("sf (mm):", value=114)
     wf= st.number_input("wf (mm):", value=60)

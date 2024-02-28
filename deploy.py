@@ -64,9 +64,9 @@ with col1:
     Model_options=['Xgboost_real', 'XGBoost_syn']
     model=st.selectbox("Model:", options=Model_options, index=Model_options.index('XGBoost_syn'))
     if model=='XGBoost_syn':
-        tuned_model_syn
+        tuned_model_=tuned_model_syn
     else: 
-        tuned_model_real
+        tuned_model_=tuned_model_real
     tf= st.number_input("Thickness of FRP (mm):", value=0.352)
     sf= st.number_input("sf (mm):", value=114)
     wf= st.number_input("wf (mm):", value=60)

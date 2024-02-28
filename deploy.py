@@ -89,7 +89,7 @@ values=pd.DataFrame({
     'A_fpl':[A_fpl],
     'E_f': [E_f],
     'Rho_sw': [Rho_sw],
-    'Rho_sl': [Rho_sw],
+    'Rho_sl': [Rho_sl],
     'alpha': [np.radians(alpha)],
     'hf': [hf],
     'b_fl_bw': [b_fl_bw],

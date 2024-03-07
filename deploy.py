@@ -102,7 +102,7 @@ values=pd.DataFrame({
     'E_f': [E_f],
     'Rho_sw': [Rho_sw],
     'Rho_sl': [Rho_sl],
-    'alpha': [np.radians(alpha)],
+    'alpha': [np.radians(int(alpha))],
     'hf': [hf],
     'b_fl_bw': [b_fl_bw],
     'S_U_O':[np.where(S_U_O=='Fully wrapped',0,np.where(S_U_O=='U-wrapped',1,2))],

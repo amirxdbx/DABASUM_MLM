@@ -86,7 +86,7 @@ with col3:
     fcm= st.number_input("Concrete compressive strength (MPa):", value=39.7)
     
     b_fl_bw=b_fl/b_w
-    Rho_sl= st.number_input("Ratio of longitudinal steel(mm):", value=0.0279)
+    Rho_sl= st.number_input("Ratio of longitudinal steel(mm):", value=0.038397)
 
 with col4:
     Asw = st.number_input("Area of stirrups (mm2):", value=56.5)

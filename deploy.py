@@ -117,5 +117,5 @@ with col5:
     st.button('Calculate', key='Calculate')
     out = st.empty()
     if st.session_state.get('Calculate'):
-        result = np.round(calculate(values), 2)
-        out.text(f"Contribution of FRP to shear resistance: \n {result} kN")
+        result = calculate(values)
+        out.text(f"Contribution of FRP to shear resistance: \n {result:.2f} kN")

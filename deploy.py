@@ -26,8 +26,33 @@ def load_model_real():
     model_real = load_model('xgboost')
     return model_real 
     
-tuned_model_syn = load_model_syn()
-tuned_model_real = load_model_real()
+tuned_model_syn = xgb.XGBRegressor(base_score=None, booster='gbtree', callbacks=None,
+                                   colsample_bytree=0.598991205676783,
+                                   early_stopping_rounds=None, enable_categorical=False,
+                                   eval_metric=None, feature_types=None, gamma=None,
+                                   gpu_id=None, grow_policy=None, importance_type=None,
+                                   interaction_constraints=None,
+                                   learning_rate=0.024869766381226545, max_bin=None,
+                                   max_cat_threshold=None, max_cat_to_onehot=None,
+                                   max_delta_step=None, max_depth=7, max_leaves=None,
+                                   min_child_weight=3, missing=None,
+                                   monotone_constraints=None, n_estimators=224,
+                                   n_jobs=-1, num_parallel_tree=None, predictor=None,
+                                   random_state=1, reg_alpha=4.1789819933641316e-08,
+                                   reg_lambda=2.7357238338159395e-06, sampling_method=None,
+                                   scale_pos_weight=8.032650201733674, subsample=0.6429452631307442,
+                                   tree_method='auto', validate_parameters=None, verbosity=0) #load_model_syn()
+tuned_model_real = xgb.XGBRegressor(base_score=None, booster='gbtree', callbacks=None,
+#              colsample_bylevel=None, colsample_bynode=None,
+#              colsample_bytree=0.5338394225042105, early_stopping_rounds=None,
+#              enable_categorical=False, eval_metric=None, feature_types=None,
+#              gamma=None, gpu_id=None, grow_policy=None, importance_type=None,
+#              interaction_constraints=None, learning_rate=0.02275545300077579,
+#              max_bin=None, max_cat_threshold=None, max_cat_to_onehot=None,
+#              max_delta_step=None, max_depth=7, max_leaves=None,
+#              min_child_weight=3, missing=np.nan, monotone_constraints=None,
+#              n_estimators=279, n_jobs=-1, num_parallel_tree=None,
+#              predictor=None, random_state=1) #load_model_real()
 
 def cot(x): 
     return 1/np.tan(x)

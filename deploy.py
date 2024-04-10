@@ -19,12 +19,12 @@ st.set_page_config(page_title="FRP contribution to Shear resistance", page_icon=
 
 @st.cache_resource
 def load_model_syn():
-    model_syn = load_model('synth_xgboost')
+    model_syn = pickle.load(open('syn.pkl', "rb")) #load_model('synth_xgboost')
     return model_syn
     
 @st.cache_resource
 def load_model_real():
-    model_real = load_model('xgboost')
+    model_real = pickle.load(open('real.pkl', "rb")) #load_model('xgboost')
     return model_real 
     
 tuned_model_syn = load_model_syn()

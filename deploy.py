@@ -36,7 +36,7 @@ tuned_model_syn = xgb.XGBRegressor(base_score=None, booster='gbtree', callbacks=
                                    learning_rate=0.024869766381226545, max_bin=None,
                                    max_cat_threshold=None, max_cat_to_onehot=None,
                                    max_delta_step=None, max_depth=7, max_leaves=None,
-                                   min_child_weight=3, missing=None,
+                                   min_child_weight=3, missing=np.nan,
                                    monotone_constraints=None, n_estimators=224,
                                    n_jobs=-1, num_parallel_tree=None, predictor=None,
                                    random_state=1, reg_alpha=4.1789819933641316e-08,

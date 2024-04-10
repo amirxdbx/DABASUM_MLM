@@ -1,5 +1,4 @@
 from PIL import Image
-from pycaret.regression import *
 import pandas as pd 
 import numpy as np
 import streamlit as st
@@ -54,7 +53,7 @@ def calculate(values):
     prediction = tuned_model_.predict(Sample)
     e_fe = unscalery(prediction) #unscalery(predict_model(tuned_model_,Sample).prediction_label[0])
     result = e_fe*float(values.get('E_f'))*float(values.get('A_fpl'))* float(values.get('hf'))*(1+cot(float(values.get('alpha'))))*np.sin(float(values.get('alpha')))
-    return result
+    return result[0]
     
 # Center the image
 st.markdown("<h1 style='text-align: center;'>Beams characteristic</h1>", unsafe_allow_html=True)

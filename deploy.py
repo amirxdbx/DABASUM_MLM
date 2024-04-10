@@ -40,16 +40,17 @@ def unscalery(value):
 def calculate(values):    
     st.write(values)
 
-    Sample=pd.DataFrame(data={'E_f':[float(values.E_f)],
-                              'Rho_f':[float(values.Rho_f)],
+    Sample=pd.DataFrame(data={'Rho_f':[float(values.Rho_f)],
                               'fcm':[float(values.fcm)],
+                              'E_f':[float(values.E_f)],
                               'Rho_sw':[float(values.Rho_sw)],
                               'Rho_sl':[float(values.Rho_sl)],
-                              'hf':[float(values.hf)],
-                              'b_fl/bw':[float(values['b_fl_bw'])],
                               'S_U_O':[float(values.S_U_O)],
+                              'hf':[float(values.hf)],
+                              'f_yy':[float(values.f_yy)],
                               'alpha':[float(values.alpha)],
-                              'f_yy':[float(values.f_yy)]})
+                              'b_fl/bw':[float(values['b_fl_bw'])],                              
+                              })
     
     e_fe = unscalery(tuned_model_.predict(Sample)) #unscalery(predict_model(tuned_model_,Sample).prediction_label[0])
     result = e_fe*float(values.get('E_f'))*float(values.get('A_fpl'))* float(values.get('hf'))*(1+cot(float(values.get('alpha'))))*np.sin(float(values.get('alpha')))

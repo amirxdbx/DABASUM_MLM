@@ -2,4 +2,3 @@
 pycaret==3.0.0rc7
 scipy==1.11.4
 xgboost==1.7.5
-streamlit

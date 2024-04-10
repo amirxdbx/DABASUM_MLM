@@ -114,7 +114,6 @@ values=pd.DataFrame({
 with col5:
     st.button('Calculate', key='Calculate')
     out = st.empty()
-    print(np.round(calculate(values), 2))
     if st.session_state.get('Calculate'):
         result = np.round(calculate(values), 2)
         out.text(f"Contribution of FRP to shear resistance: \n {result} kN")

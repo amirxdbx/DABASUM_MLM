@@ -45,7 +45,7 @@ def calculate(values):
                               'E_f':[float(values.E_f)],
                               'Rho_sw':[float(values.Rho_sw)],
                               'Rho_sl':[float(values.Rho_sl)],
-                              'S_U_O':[float(values.S_U_O)],
+                              'S_U_O':[int(values.S_U_O)],
                               'hf':[float(values.hf)],
                               'f_yy':[float(values.f_yy)],
                               'alpha':[float(values.alpha)],

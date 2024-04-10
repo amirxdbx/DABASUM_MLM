@@ -1,4 +1,4 @@
 # This file may be used to create an environment using:
-pycaret==3.0.0rc7
+pycaret==3.0.0rc8
 scipy==1.11.4
 xgboost==1.7.5

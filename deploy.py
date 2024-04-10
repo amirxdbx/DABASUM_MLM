@@ -45,12 +45,11 @@ def calculate(values):
                               'E_f':[float(values.E_f)],
                               'Rho_sw':[float(values.Rho_sw)],
                               'Rho_sl':[float(values.Rho_sl)],
-                              'S_U_O':[int8(values.S_U_O)],
+                              'S_U_O':[int(values.S_U_O)],
                               'hf':[float(values.hf)],
                               'f_yy':[float(values.f_yy)],
                               'alpha':[float(values.alpha)],
-                              'b_fl/bw':[float(values['b_fl_bw'])],                              
-                              })
+                              'b_fl/bw':[float(values['b_fl_bw'])] })
 
     prediction = tuned_model_.predict(Sample)
     e_fe = unscalery(prediction) #unscalery(predict_model(tuned_model_,Sample).prediction_label[0])

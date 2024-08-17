@@ -47,18 +47,12 @@ def calculate(values):
     st.write(values)
     Sample = pd.DataFrame(data={
         'Rho_f': [float(values.Rho_f)],
-        'tf':[float(values.tf)],
-        'wf':[float(values.wf)],
-        'sf':[float(values.sf)],
         'fcm': [float(values.fcm)],
         'E_f': [float(values.E_f)],
-        'eps_fu': [float(values.eps_fu)],
         'Rho_sw': [float(values.Rho_sw)],
         'Rho_sl': [float(values.Rho_sl)],
         'S_U_O': [int(values.S_U_O)],
-        'h': [float(values.h)],
         'hf': [float(values.hf)],
-        'd_fv':[float(values.d_fv)],
         'f_yy': [float(values.f_yy)],
         'alpha': [float(values.alpha)],
         'b_fl/bw': [float(values['b_fl_bw'])] 

@@ -84,7 +84,7 @@ session_values = st.session_state.get('user_values', {
     'ss': 300,
     'f_yy': 542
 })
-session_values['S_U_O'][0]
+session_values['S_U_O'].value
 
 # User inputs
 with col1:

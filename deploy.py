@@ -89,7 +89,7 @@ def ACI(values):
     return  row['V_f_model']
 
 def fib90(values):
-    fib90=values
+    fib90=values.copy(deep=True)
     Theta_fib90 = np.radians(45)
     alpha = fib90['alpha']
 

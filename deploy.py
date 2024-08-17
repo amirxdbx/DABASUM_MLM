@@ -234,7 +234,7 @@ with col5:
         result = calculate(values)
         values['result'] = result
         values['model'] = model
-        st.session_state.df = pd.concat([st.session_state.df, values], ignore_index=True)
+        
         st.write(f"Contribution of FRP to shear resistance (Based on XGBoost model): {result:.2f} kN")
 
         ACI_result= ACI(values)
@@ -244,7 +244,8 @@ with col5:
         fib_result= fib90(values)
         values['fib90_result'] = fib_result
         st.write(f"Contribution of FRP to shear resistance (based on fib bulletin 90): {fib_result[0]:.2f} kN")
-    
+        st.session_state.df = pd.concat([st.session_state.df, values], ignore_index=True)
+        
     if st.button('Clear Logs'):
         st.session_state.df = pd.DataFrame()  # Clear the DataFrame
         st.write("Logs cleared.")

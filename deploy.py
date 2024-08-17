@@ -54,7 +54,8 @@ def calculate(values):
         'alpha': [float(values['alpha'])],
         'b_fl/bw': [float(values['b_fl_bw'])]
     })
-
+    session_values['S_U_O']
+    
     prediction = tuned_model_.predict(Sample)
     e_fe = unscalery(prediction)
     result = e_fe * float(values.get('E_f')) * float(values.get('A_fpl')) * float(values.get('hf')) * (1 + cot(float(values.get('alpha')))) * np.sin(float(values.get('alpha')))

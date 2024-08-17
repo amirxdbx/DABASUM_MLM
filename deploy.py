@@ -44,7 +44,6 @@ def unscalery(value):
 # Function to calculate FRP contribution to shear resistance
 def calculate(values):
     Sample = pd.DataFrame(data={
-        'Rho_f': [float(values.Rho_f)],
         'fcm': [float(values.fcm)],
         'E_f': [float(values.E_f)],
         'Rho_sw': [float(values.Rho_sw)],
@@ -145,5 +144,5 @@ with col5:
     st.button('Calculate', key='Calculate')
     out = st.empty()
     if st.session_state.get('Calculate'):
-        result = calculate(st.session_state.user_values)
+        result = calculate(values)
         out.text(f"Contribution of FRP to shear resistance: \n {result:.2f} kN")

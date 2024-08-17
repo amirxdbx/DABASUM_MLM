@@ -76,7 +76,7 @@ session_values = st.session_state.get('user_values', {
     'hf': 300,
     'E_f': 218.4,
     'alpha': 90,
-    'S_U_O': 'Side-bonded',
+    'S_U_O': 'U-wrapped',
     'b_fl': 450,
     'b_w': 180,
     'fcm': 39.7,
@@ -86,27 +86,27 @@ session_values = st.session_state.get('user_values', {
 })
 session_values['S_U_O']
 
-# User inputs
-with col1:
-    Model_options = ['Xgboost_real', 'XGBoost_syn']
-    model = st.selectbox("Model:", options=Model_options, index=Model_options.index('XGBoost_syn'))
-    if model == 'XGBoost_syn':
-        tuned_model_ = tuned_model_syn
-    else: 
-        tuned_model_ = tuned_model_real
-    tf = st.number_input("Thickness of FRP (mm):", value=session_values['tf'])
-    sf = st.number_input("sf (mm):", value=session_values['sf'])
-    wf = st.number_input("wf (mm):", value=session_values['wf'])
-    A_fpl = 2 * tf * wf / sf
-    hf = st.number_input("Height of FRP reinforcement hf (mm):", value=session_values['hf'])
+# # User inputs
+# with col1:
+#     Model_options = ['Xgboost_real', 'XGBoost_syn']
+#     model = st.selectbox("Model:", options=Model_options, index=Model_options.index('XGBoost_syn'))
+#     if model == 'XGBoost_syn':
+#         tuned_model_ = tuned_model_syn
+#     else: 
+#         tuned_model_ = tuned_model_real
+#     tf = st.number_input("Thickness of FRP (mm):", value=session_values['tf'])
+#     sf = st.number_input("sf (mm):", value=session_values['sf'])
+#     wf = st.number_input("wf (mm):", value=session_values['wf'])
+#     A_fpl = 2 * tf * wf / sf
+#     hf = st.number_input("Height of FRP reinforcement hf (mm):", value=session_values['hf'])
 
-with col2: 
-    E_f = st.number_input("Elasticity modulus of FRP Ef (GPa):", value=session_values['E_f'])    
-    alpha_options = [45, 90]
-    alpha = st.selectbox("Fibres orientation:", options=alpha_options, index=alpha_options.index(session_values['alpha']))
-    config_options = ['Fully wrapped', 'U-wrapped', 'Side-bonded']
-    session_values['S_U_O']
-    S_U_O = st.selectbox("FRP configuration:", options=config_options, index=config_options.index(session_values['S_U_O']))
+# with col2: 
+#     E_f = st.number_input("Elasticity modulus of FRP Ef (GPa):", value=session_values['E_f'])    
+#     alpha_options = [45, 90]
+#     alpha = st.selectbox("Fibres orientation:", options=alpha_options, index=alpha_options.index(session_values['alpha']))
+#     config_options = ['Fully wrapped', 'U-wrapped', 'Side-bonded']
+#     session_values['S_U_O']
+#     S_U_O = st.selectbox("FRP configuration:", options=config_options, index=config_options.index(session_values['S_U_O']))
     
 # with col3:
 #     b_fl = st.number_input("Width of beam flange (mm):", value=session_values['b_fl'])

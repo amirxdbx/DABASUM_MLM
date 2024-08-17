@@ -155,7 +155,7 @@ values = pd.DataFrame({
     'fcm': [fcm],
     'f_yy': [f_yy]
 })  
-
+values['alpha']
 # Calculate and save results
 with col5:
     if st.button('Calculate'):

@@ -76,7 +76,7 @@ session_values = st.session_state.get('user_values', {
     'hf': 300,
     'E_f': 218.4,
     'alpha': 90,
-    'S_U_O': 'U-wrapped',
+    'S_U_O': 'Side-bonded',
     'b_fl': 450,
     'b_w': 180,
     'fcm': 39.7,

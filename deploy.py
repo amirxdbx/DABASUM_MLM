@@ -84,7 +84,7 @@ session_values = st.session_state.get('user_values', {
     'ss': 300,
     'f_yy': 542
 })
-session_values['S_U_O'].iloc[0,:]
+session_values['S_U_O']
 
 # User inputs
 with col1:
@@ -105,7 +105,7 @@ with col2:
     alpha_options = [45, 90]
     alpha = st.selectbox("Fibres orientation:", options=alpha_options, index=alpha_options.index(session_values['alpha']))
     config_options = ['Fully wrapped', 'U-wrapped', 'Side-bonded']
-    S_U_O = st.selectbox("FRP configuration:", options=config_options, index=config_options.index(session_values['S_U_O'][0]))
+    S_U_O = st.selectbox("FRP configuration:", options=config_options, index=config_options.index(session_values['S_U_O']))
 
 with col3:
     b_fl = st.number_input("Width of beam flange (mm):", value=session_values['b_fl'])

@@ -84,7 +84,7 @@ session_values = st.session_state.get('user_values', {
     'ss': 300,
     'f_yy': 542
 })
-float(session_values['S_U_O'])
+(session_values['S_U_O'])
 
 # User inputs
 with col1:

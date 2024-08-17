@@ -136,7 +136,9 @@ st.session_state.user_values = {
     'fcm': fcm,
     'Asw': Asw,
     'ss': ss,
-    'f_yy': f_yy
+    'f_yy': f_yy,
+    'Rho_sw':Rho_sw,
+    'Rho_sl': Rho_sl
 }
 
 # Calculate button and output

@@ -98,7 +98,7 @@ def fib90(values):
     
     s0 = 0.24# 0.24 mean value
     fck=fib90['fcm']-8
-    fctm=np.where(fib90.fck<50,0.3*fib90.fck**(2/3),2.12*np.log(1+fib90.fcm/10))
+    fctm=np.where(fck<50,0.3*fck**(2/3),2.12*np.log(1+fib90.fcm/10))
     Tau_b1k = 0.72*np.sqrt(fib90['fcm']*fctm) # mean value 0.72
     
     # reported E by provider is considered to be the characteristic value

@@ -119,6 +119,6 @@ with col5:
     out = st.empty()
     if st.session_state.get('Calculate'):
         result = calculate(values)
-        df=pd.concat([df,result],index=1)
+        df=pd.concat([df,result],axis=1)
         out.text(f"Contribution of FRP to shear resistance: \n {result:.2f} kN")
 df

@@ -43,15 +43,16 @@ def unscalery(value):
 
 # Function to calculate FRP contribution to shear resistance
 def calculate(values):
+    # Convert S_U_O to integer only when needed for calculations
     S_U_O_mapping = {'Fully wrapped': 0, 'U-wrapped': 1, 'Side-bonded': 2}
     S_U_O_value = S_U_O_mapping[values['S_U_O']]
-    print(S_U_O_value)
+
     Sample = pd.DataFrame(data={
         'fcm': [float(values['fcm'])],
         'E_f': [float(values['E_f'])],
         'Rho_sw': [float(values['Rho_sw'])],
         'Rho_sl': [float(values['Rho_sl'])],
-        'S_U_O': [S_U_O_value],
+        'S_U_O': [S_U_O_value],  # Pass the integer value here
         'hf': [float(values['hf'])],
         'f_yy': [float(values['f_yy'])],
         'alpha': [float(values['alpha'])],
@@ -87,70 +88,63 @@ session_values = st.session_state.get('user_values', {
     'ss': 300,
     'f_yy': 542
 })
-session_values['S_U_O']
 
-# # User inputs
-# with col1:
-#     Model_options = ['Xgboost_real', 'XGBoost_syn']
-#     model = st.selectbox("Model:", options=Model_options, index=Model_options.index('XGBoost_syn'))
-#     if model == 'XGBoost_syn':
-#         tuned_model_ = tuned_model_syn
-#     else: 
-#         tuned_model_ = tuned_model_real
-#     tf = st.number_input("Thickness of FRP (mm):", value=session_values['tf'])
-#     sf = st.number_input("sf (mm):", value=session_values['sf'])
-#     wf = st.number_input("wf (mm):", value=session_values['wf'])
-#     A_fpl = 2 * tf * wf / sf
-#     hf = st.number_input("Height of FRP reinforcement hf (mm):", value=session_values['hf'])
+# User inputs
+with col1:
+    Model_options = ['Xgboost_real', 'XGBoost_syn']
+    model = st.selectbox("Model:", options=Model_options, index=Model_options.index('XGBoost_syn'))
+    if model == 'XGBoost_syn':
+        tuned_model_ = tuned_model_syn
+    else: 
+        tuned_model_ = tuned_model_real
+    tf = st.number_input("Thickness of FRP (mm):", value=session_values['tf'])
+    sf = st.number_input("sf (mm):", value=session_values['sf'])
+    wf = st.number_input("wf (mm):", value=session_values['wf'])
+    A_fpl = 2 * tf * wf / sf
+    hf = st.number_input("Height of FRP reinforcement hf (mm):", value=session_values['hf'])
 
-# with col2: 
-#     E_f = st.number_input("Elasticity modulus of FRP Ef (GPa):", value=session_values['E_f'])    
-#     alpha_options = [45, 90]
-#     alpha = st.selectbox("Fibres orientation:", options=alpha_options, index=alpha_options.index(session_values['alpha']))
-#     config_options = ['Fully wrapped', 'U-wrapped', 'Side-bonded']
-#     session_values['S_U_O']
-#     S_U_O = st.selectbox("FRP configuration:", options=config_options, index=config_options.index(session_values['S_U_O']))
-    
-# with col3:
-#     b_fl = st.number_input("Width of beam flange (mm):", value=session_values['b_fl'])
-#     b_w = st.number_input("Width of beam web(mm):", value=session_values['b_w'])
-#     fcm = st.number_input("Concrete compressive strength (MPa):", value=session_values['fcm'])
-#     b_fl_bw = b_fl / b_w
-#     Rho_sl = st.number_input("Ratio of longitudinal steel(mm):", value=0.038397)
+with col2: 
+    E_f = st.number_input("Elasticity modulus of FRP Ef (GPa):", value=session_values['E_f'])    
+    alpha_options = [45, 90]
+    alpha = st.selectbox("Fibres orientation:", options=alpha_options, index=alpha_options.index(session_values['alpha']))
+    config_options = ['Fully wrapped', 'U-wrapped', 'Side-bonded']
+    S_U_O = st.selectbox("FRP configuration:", options=config_options, index=config_options.index(session_values['S_U_O']))
 
-# with col4:
-#     Asw = st.number_input("Area of stirrups (mm2):", value=session_values['Asw'])
-#     ss = st.number_input("Spacing of stirrups (mm):", value=session_values['ss'])
-#     f_yy = st.number_input("Steel yield strength fswy (MPa):", value=session_values['f_yy'])
-#     if ss == 0:
-#         Rho_sw = 0
-#     else: 
-#         Rho_sw = Asw / ss / b_w
+with col3:
+    b_fl = st.number_input("Width of beam flange (mm):", value=session_values['b_fl'])
+    b_w = st.number_input("Width of beam web(mm):", value=session_values['b_w'])
+    fcm = st.number_input("Concrete compressive strength (MPa):", value=session_values['fcm'])
+    b_fl_bw = b_fl / b_w
+    Rho_sl = st.number_input("Ratio of longitudinal steel(mm):", value=0.038397)
 
-# # Store current values in session_state
-# st.session_state.user_values = {
-#     'tf': tf,
-#     'sf': sf,
-#     'wf': wf,
-#     'hf': hf,
-#     'E_f': E_f,
-#     'alpha': alpha,
-#     'S_U_O':S_U_O,    
-#     'b_fl': b_fl,
-#     'b_w': b_w,
-#     'fcm': fcm,
-#     'Asw': Asw,
-#     'ss': ss,
-#     'f_yy': f_yy,
-#     'Rho_sw':Rho_sw,
-#     'Rho_sl': Rho_sl
-# }
+with col4:
+    Asw = st.number_input("Area of stirrups (mm2):", value=session_values['Asw'])
+    ss = st.number_input("Spacing of stirrups (mm):", value=session_values['ss'])
+    f_yy = st.number_input("Steel yield strength fswy (MPa):", value=session_values['f_yy'])
+    if ss == 0:
+        Rho_sw = 0
+    else: 
+        Rho_sw = Asw / ss / b_w
 
-# # Calculate button and output
-# with col5:
-#     st.button('Calculate', key='Calculate')
-#     out = st.empty()
-#     # if st.session_state.get('Calculate'):
-#     #     result = calculate(st.session_state.user_values)
-#     #     out.text(f"Contribution of FRP to shear resistance: \n {result:.2f} kN")
-    
+# Store current values in session_state
+st.session_state.user_values = {
+    'tf': tf,
+    'sf': sf,
+    'wf': wf,
+    'hf': hf,
+    'E_f': E_f,
+    'alpha': alpha,
+    'S_U_O': S_U_O,  # Store the string directly
+    'b_fl': b_fl,
+    'b_w': b_w,
+    'fcm': fcm,
+    'Asw': Asw,
+    'ss': ss,
+    'f_yy': f_yy
+}
+
+# Calculate button and output
+with col5:
+    if st.button('Calculate'):
+        result = calculate(st.session_state.user_values)
+        st.text(f"Contribution of FRP to shear resistance: \n {result:.2f} kN")

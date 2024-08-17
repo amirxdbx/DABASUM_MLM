@@ -84,6 +84,7 @@ session_values = st.session_state.get('user_values', {
     'ss': 300,
     'f_yy': 542
 })
+session_values
 
 # User inputs
 with col1:
@@ -148,4 +149,4 @@ with col5:
     # if st.session_state.get('Calculate'):
     #     result = calculate(st.session_state.user_values)
     #     out.text(f"Contribution of FRP to shear resistance: \n {result:.2f} kN")
-    session_values
+    

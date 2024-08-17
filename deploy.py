@@ -43,12 +43,15 @@ def unscalery(value):
 
 # Function to calculate FRP contribution to shear resistance
 def calculate(values):
+    S_U_O_mapping = {'Fully wrapped': 0, 'U-wrapped': 1, 'Side-bonded': 2}
+    S_U_O_value = S_U_O_mapping[values['S_U_O']]
+    
     Sample = pd.DataFrame(data={
         'fcm': [float(values['fcm'])],
         'E_f': [float(values['E_f'])],
         'Rho_sw': [float(values['Rho_sw'])],
         'Rho_sl': [float(values['Rho_sl'])],
-        'S_U_O': [([np.where(S_U_O=='Fully wrapped',0,np.where(S_U_O=='U-wrapped',1,2))])[0]],
+        'S_U_O': [S_U_O_value],
         'hf': [float(values['hf'])],
         'f_yy': [float(values['f_yy'])],
         'alpha': [float(values['alpha'])],

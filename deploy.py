@@ -103,12 +103,8 @@ with col2:
     E_f = st.number_input("Elasticity modulus of FRP Ef (GPa):", value=session_values['E_f'])    
     alpha_options = [45, 90]
     alpha = st.selectbox("Fibres orientation:", options=alpha_options, index=alpha_options.index(session_values['alpha']))
-    
-    config_options = {'Fully wrapped': 0,'U-wrapped': 1,'Side-bonded': 2}
-    config_labels = list(config_options.keys())
-    selected_option = st.selectbox("FRP configuration:", options=config_labels, index=config_labels.index(session_values['S_U_O']))
-    selected_option
-    S_U_O = config_options[selected_option] 
+    config_options = ['Fully wrapped', 'U-wrapped', 'Side-bonded']
+    S_U_O = st.selectbox("FRP configuration:", options=config_options, index=config_options.index(session_values.S_U_O))
     
 with col3:
     b_fl = st.number_input("Width of beam flange (mm):", value=session_values['b_fl'])

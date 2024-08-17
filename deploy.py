@@ -4,6 +4,7 @@ import numpy as np
 import streamlit as st
 import xgboost as xgb
 import pickle
+import io
 
 # Function to resize image
 def resize_image(image, max_size=(600, 400)):
@@ -36,25 +37,25 @@ tuned_model_real = load_model_real()
 
 # Mathematical functions
 def cot(x): 
-    return 1/np.tan(x)
+    return 1 / np.tan(x)
 
 def unscalery(value):
-    return np.exp(((value-0.001)*3.380368123788582)-7.902757481871019)
+    return np.exp(((value - 0.001) * 3.380368123788582) - 7.902757481871019)
 
 # Function to calculate FRP contribution to shear resistance
 def calculate(values):    
     st.write(values)
     Sample = pd.DataFrame(data={
-        'Rho_f':[float(values.Rho_f)],
-        'fcm':[float(values.fcm)],
-        'E_f':[float(values.E_f)],
-        'Rho_sw':[float(values.Rho_sw)],
-        'Rho_sl':[float(values.Rho_sl)],
-        'S_U_O':[int(values.S_U_O)],
-        'hf':[float(values.hf)],
-        'f_yy':[float(values.f_yy)],
-        'alpha':[float(values.alpha)],
-        'b_fl/bw':[float(values['b_fl_bw'])] 
+        'Rho_f': [float(values.Rho_f)],
+        'fcm': [float(values.fcm)],
+        'E_f': [float(values.E_f)],
+        'Rho_sw': [float(values.Rho_sw)],
+        'Rho_sl': [float(values.Rho_sl)],
+        'S_U_O': [int(values.S_U_O)],
+        'hf': [float(values.hf)],
+        'f_yy': [float(values.f_yy)],
+        'alpha': [float(values.alpha)],
+        'b_fl/bw': [float(values['b_fl_bw'])] 
     })
     prediction = tuned_model_.predict(Sample)
     e_fe = unscalery(prediction)
@@ -67,7 +68,7 @@ if 'df' not in st.session_state:
 
 # Center the image
 st.markdown("<h1 style='text-align: center;'>Beams characteristic</h1>", unsafe_allow_html=True)
-st.image(resized_image, caption='', use_column_width ='auto')
+st.image(resized_image, caption='', use_column_width='auto')
 st.markdown("<h1 style='text-align: center;'>Enter your beam data:</h1>", unsafe_allow_html=True)
 
 # UI layout with column configuration
@@ -131,6 +132,17 @@ with col5:
     if st.button('Clear Logs'):
         st.session_state.df = pd.DataFrame()  # Clear the DataFrame
         st.write("Logs cleared.")
+    
+    if st.button('Download Log'):
+        # Convert DataFrame to CSV
+        csv = st.session_state.df.to_csv(index=False)
+        # Create a download link for the CSV
+        st.download_button(
+            label="Download CSV",
+            data=csv,
+            file_name='frp_contribution_logs.csv',
+            mime='text/csv'
+        )
 
 # Display the DataFrame with saved results
 st.write("Log of results:")

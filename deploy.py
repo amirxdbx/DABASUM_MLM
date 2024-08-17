@@ -118,4 +118,4 @@ with col5:
     out = st.empty()
     if st.session_state.get('Calculate'):
         result = calculate(values)
-        out.text(f"Contribution of FRP to shear resistance: \n {result:.2f} kN")"
+        out.text(f"Contribution of FRP to shear resistance: \n {result:.2f} kN")

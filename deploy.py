@@ -107,8 +107,9 @@ with col2:
     
     config_options = {'Fully wrapped': 0,'U-wrapped': 1,'Side-bonded': 2}
     config_labels = list(config_options.keys())
-    config_labels
+    session_values['S_U_O']
     selected_option = st.selectbox("FRP configuration:", options=config_labels, index=config_labels.index(session_values['S_U_O']))
+    selected_option
     S_U_O = config_options[selected_option] 
     
     S_U_O

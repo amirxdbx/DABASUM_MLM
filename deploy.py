@@ -166,7 +166,7 @@ with col5:
 
         ACI_result= ACI(values)
         values['ACI_result'] = ACI_result
-        st.write(f"Contribution of FRP to shear resistance (based on ACI 440.2R): {ACI_result:.2f} kN")
+        st.write(f"Contribution of FRP to shear resistance (based on ACI 440.2R): {ACI_result} kN")
     
     if st.button('Clear Logs'):
         st.session_state.df = pd.DataFrame()  # Clear the DataFrame

@@ -45,7 +45,7 @@ def unscalery(value):
 def calculate(values):
     S_U_O_mapping = {'Fully wrapped': 0, 'U-wrapped': 1, 'Side-bonded': 2}
     S_U_O_value = S_U_O_mapping[values['S_U_O']]
-    
+    print(S_U_O_value)
     Sample = pd.DataFrame(data={
         'fcm': [float(values['fcm'])],
         'E_f': [float(values['E_f'])],

@@ -88,6 +88,77 @@ def ACI(values):
     row['V_f_model'] = Sai_f*(f_fe*Alpha_factor*row['d_fv']*A_fv)*0.001        
     return  row['V_f_model']
 
+def fib90(values):
+    fib90=values
+    Theta_fib90 = np.radians(45)
+    alpha = fib90['alpha']
+
+    angle_factors = (cot(alpha) + cot(Theta_fib90))*np.sin(alpha)
+    fib90['k_R'] = np.where(fib90['R'] < 50, 0.5*(fib90['R']/50)*(2-(fib90['R']/50)), 0.5)  # fib bulletin 90
+    
+    s0 = 0.24# 0.24 mean value
+    fck=fib90.fcm-8
+    fctm=np.where(fib90.fck<50,0.3*fib90.fck**(2/3),2.12*np.log(1+fib90.fcm/10))
+    Tau_b1k = 0.72*np.sqrt(fib90['fcm']*fctm) # mean value 0.72
+    
+    # reported E by provider is considered to be the characteristic value
+    
+    fib90['le'] = (np.pi/2)*np.sqrt(fib90['E_f']*1000* fib90['tf']*s0/ Tau_b1k)
+    
+    fib90['x'] = (fib90['hf']/np.sin(alpha)).astype('float')
+    
+    fib90['y'] = (fib90['sf'] /np.sin(alpha)/(cot(alpha) + cot(Theta_fib90))).astype('float')
+        
+    fib90['n'] = (fib90['hf']*(cot(alpha) + cot(Theta_fib90))/fib90['sf']).astype(int)
+    
+    fib90['m'] = (fib90['le'] * (cot(alpha) + cot(Theta_fib90)) * np.sin(alpha)/fib90['sf']).astype(int)
+    
+    # le*sin(a)/hf
+    fib90['le*sin(a)/hf'] = fib90['le']*np.sin(alpha) / fib90['hf']
+    ###
+    fib90['f_fbk'] = np.sqrt(fib90['E_f']*1000*s0*Tau_b1k / fib90['tf'])
+
+    # O configuration "f_fwm,c"
+    yf = 1.0
+    fib90['f_fd'] = fib90['eps_fu']*fib90['E_f']/yf
+    fib90['f_fwm,c'] = 0.8*fib90['k_R']*fib90['f_fd']
+    yb = 1.0
+    # U configuration + Discrete CFRP "f_fbwm"
+    fib90['Continuous']=np.where(fib90.wf==1,1,0)
+    fib90['c1'] = (fib90['S_U_O'] != 0) & (fib90['Continuous'] == 0) & (fib90['x'] >= fib90['le']) & (
+        fib90['y'] >= fib90['le']) & (fib90['x'] >= fib90['y'])  # condition1
+    fib90['c2'] = (fib90['S_U_O'] != 0) & (fib90['Continuous'] == 0) & (fib90['x'] >= fib90['le']) & (
+        fib90['y'] <= fib90['le'])  # condition2
+    fib90['c3'] = (fib90['S_U_O'] != 0) & (fib90['Continuous'] == 0) & (fib90['x'] <= fib90['le']) & (fib90['y'] <= fib90['x'])  # condition3
+    
+    fib90['f_fbwd'] = np.where(fib90['c1'] == True, fib90['f_fbk']/yb, 0)
+    fib90['f_fbwd'] = np.where(fib90['c2'] == True, (1-(1-(2/3)*(fib90['m'])*(fib90['sf'])/(
+        fib90['le']))*(fib90['m']/fib90['n']))*fib90['f_fbk']/yb, fib90['f_fbwd'])
+    fib90['f_fbwd'] = np.where(fib90['c3'] == True, (2/3)*((fib90['n']*fib90['sf'] / fib90['le']) * angle_factors) *
+                                fib90['f_fbk']/yb, fib90['f_fbwd'])
+    
+    # U configuration + Continuous CFRP "f_fbwm"
+    fib90['c4'] = (fib90['S_U_O'] != 0) & (fib90['Continuous'] == 1) & (
+        fib90['x'] >= fib90['le'])  # condition4
+    fib90['c5'] = (fib90['S_U_O'] != 0) & (fib90['Continuous'] == 1) & (
+        fib90['x'] < fib90['le'])
+    
+    fib90['f_fbwd'] = np.where(fib90['c4'] == True, (1-(fib90['le']/(
+        3*fib90['x'])))*fib90['f_fbk']/yb, fib90['f_fbwd'])
+    fib90['f_fbwd'] = np.where(fib90['c5'] == True, (2/3)*(
+        fib90['x']/fib90['le'])*fib90['f_fbk']/yb, fib90['f_fbwd'])
+    
+    # f_fwd
+    fib90.loc[(fib90['S_U_O'] != 0), "Ffwd"] = np.minimum(fib90['f_fbwd'], fib90['f_fwm,c'])  # U wrap
+    
+    fib90.loc[fib90['S_U_O'] == 0, "Ffwd"] = fib90['f_fwm,c']  # Full wrap
+    fib90['Ffwd'] = fib90['Ffwd']
+    
+    # V_f fib bulletin 90
+    fib90['V_f_model'] = (fib90['A_fpl'] * fib90['hf'] * fib90['Ffwd']*angle_factors*0.001).astype(float)
+   
+    return fib90['V_f_model']
+
 # Initialize the DataFrame in session_state if not already present
 if 'df' not in st.session_state:
     st.session_state.df = pd.DataFrame()
@@ -127,6 +198,7 @@ with col3:
     fcm = st.number_input("Concrete compressive strength (MPa):", value=39.7)
     b_fl_bw = b_fl / b_w
     Rho_sl = st.number_input("Ratio of longitudinal steel(mm):", value=0.038397)
+    R= st.number_input("Corner radius (mm):", value=20)
 
 with col4:
     Asw = st.number_input("Area of stirrups (mm2):", value=56.5)
@@ -152,7 +224,8 @@ values = pd.DataFrame({
     'S_U_O': [np.where(S_U_O == 'Fully wrapped', 0, np.where(S_U_O == 'U-wrapped', 1, 2))],
     'Rho_f': [A_fpl / b_w],
     'fcm': [fcm],
-    'f_yy': [f_yy]
+    'f_yy': [f_yy],
+    'R':[R]    
 })  
 
 # Calculate and save results
@@ -167,6 +240,10 @@ with col5:
         ACI_result= ACI(values)
         values['ACI_result'] = ACI_result
         st.write(f"Contribution of FRP to shear resistance (based on ACI 440.2R): {ACI_result[0]:.2f} kN")
+
+        fib_result= fib90(values)
+        values['fib90_result'] = fib_result
+        st.write(f"Contribution of FRP to shear resistance (based on fib bulletin 90): {fib_result[0]:.2f} kN")
     
     if st.button('Clear Logs'):
         st.session_state.df = pd.DataFrame()  # Clear the DataFrame

@@ -148,4 +148,4 @@ with col5:
     # if st.session_state.get('Calculate'):
     #     result = calculate(st.session_state.user_values)
     #     out.text(f"Contribution of FRP to shear resistance: \n {result:.2f} kN")
-    st.session_state.user_values
+    session_values

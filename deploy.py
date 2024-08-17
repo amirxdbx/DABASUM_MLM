@@ -124,9 +124,10 @@ with col5:
     if st.button('Calculate'):
         result = calculate(values)
         values['result'] = result
+        values['model']= model
         st.session_state.df = pd.concat([st.session_state.df, values], ignore_index=True)
         st.write(f"Contribution of FRP to shear resistance: {result:.2f} kN")
 
 # Display the DataFrame with saved results
-st.write("Results Table:")
+st.write("Log of results:")
 st.write(st.session_state.df)

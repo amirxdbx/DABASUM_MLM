@@ -79,10 +79,10 @@ def ACI(values):
     eps_fu = C_E*row['eps_fu']
     # d_fv
     d_sl_1 = row.d
-    row['fck']=row['fcm']-8
+    fck=row['fcm']-8
     ###   e_fe_predicted  #########################################
     row['L_e'] = 23300/(row['tf']*row['E_f']*1000)**0.58
-    k_1 = (row['fck']/27)**(2/3)
+    k_1 = (fck/27)**(2/3)
     k_2 = np.where(row['full']==1,(row['d_fv']-row['L_e'])/row['d_fv'],
                     np.where(row.full==2,np.maximum(0,(row['d_fv']-2*row['L_e'])/row['d_fv']),0))
     row['k_v'] = np.where(row['full'] == 0, 0.75,(k_1*k_2*row['L_e'])/(11900*eps_fu))

@@ -47,11 +47,16 @@ def calculate(values):
     st.write(values)
     Sample = pd.DataFrame(data={
         'Rho_f': [float(values.Rho_f)],
+        'tf':[float(values.tf)],
+        'wf':[float(values.wf)],
+        'sf':[float(values.sf)],
         'fcm': [float(values.fcm)],
         'E_f': [float(values.E_f)],
+        'eps_fu': [float(values.eps_fu)],
         'Rho_sw': [float(values.Rho_sw)],
         'Rho_sl': [float(values.Rho_sl)],
         'S_U_O': [int(values.S_U_O)],
+        'h': [float(values.h)],
         'hf': [float(values.hf)],
         'f_yy': [float(values.f_yy)],
         'alpha': [float(values.alpha)],
@@ -61,6 +66,35 @@ def calculate(values):
     e_fe = unscalery(prediction)
     result = e_fe * float(values.get('E_f')) * float(values.get('A_fpl')) * float(values.get('hf')) * (1 + cot(float(values.get('alpha')))) * np.sin(float(values.get('alpha')))
     return result[0]
+
+def ACI(values):
+    row=values.copy(deep=True)
+    row['full']=row['S_U_O']
+    ## ACI 440.2R-17
+    alpha = row.alpha.astype(int)
+    Alpha_factor = np.sin(alpha)+np.cos(alpha)
+    C_E = 0.95    # phi = 0.75
+    phi = 1    # C_E = 0.95  # considering interior exposure for CFRP
+    eps_fu = C_E*row['eps_fu']
+    # d_fv
+    d_sl_1 = row.d
+    row['fck']=row['fcm']-8
+    ###   e_fe_predicted  #########################################
+    row['L_e'] = 23300/(row['tf']*row['E_f']*1000)**0.58
+    k_1 = (row['fck']/27)**(2/3)
+    k_2 = np.where(row['full']==1,(row['d_fv']-row['L_e'])/row['d_fv'],
+                    np.where(row.full==2,np.maximum(0,(row['d_fv']-2*row['L_e'])/row['d_fv']),0))
+    row['k_v'] = np.where(row['full'] == 0, 0.75,(k_1*k_2*row['L_e'])/(11900*eps_fu))
+    # e_fe_predicted
+    row['e_fe_ACI'] = row['k_v']*eps_fu
+    row['e_fe_ACI'] = np.where(row['e_fe_ACI'] > 0.004, 0.004,row['e_fe_ACI'])
+    # f_fe
+    f_fe = row['E_f']*1000*row['e_fe_ACI']
+    # V_f_predicted
+    Sai_f = np.where(row['full'] == 0, 0.95, 0.85)
+    A_fv = 2*row['tf']*np.where(row['wf'] == 1, np.sin(alpha), row['wf']/row['sf'])
+    row['V_f_model'] = phi*Sai_f*(f_fe*Alpha_factor*row['d_fv']*A_fv)*0.001        
+    return  row['V_f_model']
 
 # Initialize the DataFrame in session_state if not already present
 if 'df' not in st.session_state:
@@ -86,6 +120,7 @@ with col1:
     hf = st.number_input("Height of FRP reinforcement hf (mm):", value=300)
 
 with col2: 
+    eps_fu = st.number_input("Ultimate strength of FRP Ef (MPa):", value=2862.9)    
     E_f = st.number_input("Elasticity modulus of FRP Ef (GPa):", value=218.4)    
     alpha_options = [45, 90]
     alpha = st.selectbox("Fibres orientation:", options=alpha_options, index=alpha_options.index(90))
@@ -93,6 +128,7 @@ with col2:
     S_U_O = st.selectbox("FRP configuration:", options=config_options, index=config_options.index('U-wrapped'))
 
 with col3:
+    h= st.number_input("Total height of beam (mm):", value=400)
     b_fl = st.number_input("Width of beam flange (mm):", value=450)
     b_w = st.number_input("Width of beam web(mm):", value=180)
     fcm = st.number_input("Concrete compressive strength (MPa):", value=39.7)
@@ -112,7 +148,12 @@ values = pd.DataFrame({
     'Rho_sw': [Rho_sw],
     'Rho_sl': [Rho_sl],
     'alpha': [np.radians(int(alpha))],
+    'tf':[tf],
+    'sf':[sf],
+    'wf':[wf],
     'hf': [hf],
+    'h':[h],
+    'eps_fu':[eps_fu],
     'b_fl_bw': [b_fl_bw],
     'S_U_O': [np.where(S_U_O == 'Fully wrapped', 0, np.where(S_U_O == 'U-wrapped', 1, 2))],
     'Rho_f': [A_fpl / b_w],

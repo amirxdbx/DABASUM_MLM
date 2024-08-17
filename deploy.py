@@ -4,6 +4,7 @@ import numpy as np
 import streamlit as st
 import xgboost as xgb
 import pickle
+df=pd.DataFrame()
 
 def resize_image(image, max_size=(600, 400)):
     original_size = image.size
@@ -113,7 +114,6 @@ values=pd.DataFrame({
     'f_yy': [f_yy]
 })  
 
-df=pd.DataFrame()
 with col5:
     st.button('Calculate', key='Calculate')
     out = st.empty()

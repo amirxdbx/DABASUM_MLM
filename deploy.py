@@ -130,7 +130,7 @@ st.session_state.user_values = {
     'hf': hf,
     'E_f': E_f,
     'alpha': alpha,
-    'S_U_O':[np.where(S_U_O=='Fully wrapped',0,np.where(S_U_O=='U-wrapped',1,2))],    
+    'S_U_O':int([np.where(S_U_O=='Fully wrapped',0,np.where(S_U_O=='U-wrapped',1,2))]),    
     'b_fl': b_fl,
     'b_w': b_w,
     'fcm': fcm,

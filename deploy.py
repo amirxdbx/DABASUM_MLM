@@ -71,8 +71,6 @@ def ACI(values):
     C_E = 0.95    # phi = 0.75
     phi = 1    # C_E = 0.95  # considering interior exposure for CFRP
     eps_fu = C_E*row['eps_fu']
-    # d_fv
-    d_sl_1 = row.d
     fck=row['fcm']-8
     ###   e_fe_predicted  #########################################
     row['L_e'] = 23300/(row['tf']*row['E_f']*1000)**0.58

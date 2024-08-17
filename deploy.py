@@ -58,6 +58,7 @@ def calculate(values):
         'S_U_O': [int(values.S_U_O)],
         'h': [float(values.h)],
         'hf': [float(values.hf)],
+        'd_fv':[float(values.d_fv)],
         'f_yy': [float(values.f_yy)],
         'alpha': [float(values.alpha)],
         'b_fl/bw': [float(values['b_fl_bw'])] 
@@ -118,6 +119,7 @@ with col1:
     wf = st.number_input("wf (mm):", value=60)
     A_fpl = 2 * tf * wf / sf
     hf = st.number_input("Height of FRP reinforcement hf (mm):", value=300)
+    d_fv= st.number_input("Effective height of FRP (mm):", value=260)
 
 with col2: 
     eps_fu = st.number_input("Ultimate strength of FRP Ef (MPa):", value=2862.9)    
@@ -153,6 +155,7 @@ values = pd.DataFrame({
     'wf':[wf],
     'hf': [hf],
     'h':[h],
+    'd_fv':[d_fv],
     'eps_fu':[eps_fu],
     'b_fl_bw': [b_fl_bw],
     'S_U_O': [np.where(S_U_O == 'Fully wrapped', 0, np.where(S_U_O == 'U-wrapped', 1, 2))],

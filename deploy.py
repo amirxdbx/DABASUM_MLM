@@ -111,11 +111,14 @@ values=pd.DataFrame({
     'Rho_f':[A_fpl/b_w],
     'fcm':[fcm],
     'f_yy': [f_yy]
-})   
+})  
 
+df=pd.DataFrame()
 with col5:
     st.button('Calculate', key='Calculate')
     out = st.empty()
     if st.session_state.get('Calculate'):
         result = calculate(values)
+        df=pd.concat([df,result],index=1)
         out.text(f"Contribution of FRP to shear resistance: \n {result:.2f} kN")
+df

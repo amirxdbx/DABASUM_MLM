@@ -1,3 +1,4 @@
+import sqlite3
 from PIL import Image
 import pandas as pd 
 import numpy as np
@@ -10,7 +11,7 @@ def resize_image(image, max_size=(600, 400)):
     ratio = min(max_size[0] / original_size[0], max_size[1] / original_size[1])
     new_size = tuple(int(dim * ratio) for dim in original_size)
     return image.resize(new_size)
-    
+
 # Load and resize the image
 image = Image.open('cross_section-ML.png')
 resized_image = resize_image(image, max_size=(600, 400))
@@ -19,14 +20,14 @@ st.set_page_config(page_title="FRP contribution to Shear resistance", page_icon=
 
 @st.cache_resource
 def load_model_syn():
-    model_syn = pickle.load(open('syn.pkl', "rb")) #load_model('synth_xgboost')
+    model_syn = pickle.load(open('syn.pkl', "rb"))
     return model_syn
     
 @st.cache_resource
 def load_model_real():
-    model_real = pickle.load(open('real.pkl', "rb")) #load_model('xgboost')
+    model_real = pickle.load(open('real.pkl', "rb"))
     return model_real 
-    
+
 tuned_model_syn = load_model_syn()
 tuned_model_real = load_model_real()
 
@@ -36,86 +37,120 @@ def cot(x):
 def unscalery(value):
     return np.exp(((value-0.001)*3.380368123788582)-7.902757481871019)
 
+def initialize_db():
+    conn = sqlite3.connect('beam_data.db')
+    cursor = conn.cursor()
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS BeamInputs (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            A_fpl REAL,
+            E_f REAL,
+            Rho_sw REAL,
+            Rho_sl REAL,
+            alpha REAL,
+            hf REAL,
+            b_fl_bw REAL,
+            S_U_O INTEGER,
+            Rho_f REAL,
+            fcm REAL,
+            f_yy REAL
+        )
+    ''')
+    conn.commit()
+    conn.close()
+
+def insert_record(values):
+    conn = sqlite3.connect('beam_data.db')
+    cursor = conn.cursor()
+    cursor.execute('''
+        INSERT INTO BeamInputs (A_fpl, E_f, Rho_sw, Rho_sl, alpha, hf, b_fl_bw, S_U_O, Rho_f, fcm, f_yy)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    ''', (values['A_fpl'][0], values['E_f'][0], values['Rho_sw'][0], values['Rho_sl'][0], 
+          values['alpha'][0], values['hf'][0], values['b_fl_bw'][0], values['S_U_O'][0], 
+          values['Rho_f'][0], values['fcm'][0], values['f_yy'][0]))
+    conn.commit()
+    conn.close()
+
 def calculate(values):    
     st.write(values)
 
-    Sample=pd.DataFrame(data={'Rho_f':[float(values.Rho_f)],
-                              'fcm':[float(values.fcm)],
-                              'E_f':[float(values.E_f)],
-                              'Rho_sw':[float(values.Rho_sw)],
-                              'Rho_sl':[float(values.Rho_sl)],
-                              'S_U_O':[int(values.S_U_O)],
-                              'hf':[float(values.hf)],
-                              'f_yy':[float(values.f_yy)],
-                              'alpha':[float(values.alpha)],
-                              'b_fl/bw':[float(values['b_fl_bw'])] })
-    print(Sample)
+    Sample = pd.DataFrame(data={'Rho_f':[float(values.Rho_f)],
+                                'fcm':[float(values.fcm)],
+                                'E_f':[float(values.E_f)],
+                                'Rho_sw':[float(values.Rho_sw)],
+                                'Rho_sl':[float(values.Rho_sl)],
+                                'S_U_O':[int(values.S_U_O)],
+                                'hf':[float(values.hf)],
+                                'f_yy':[float(values.f_yy)],
+                                'alpha':[float(values.alpha)],
+                                'b_fl/bw':[float(values['b_fl_bw'])] })
+
+    insert_record(values)
     prediction = tuned_model_.predict(Sample)
-    e_fe = unscalery(prediction) #unscalery(predict_model(tuned_model_,Sample).prediction_label[0])
-    result = e_fe*float(values.get('E_f'))*float(values.get('A_fpl'))* float(values.get('hf'))*(1+cot(float(values.get('alpha'))))*np.sin(float(values.get('alpha')))
+    e_fe = unscalery(prediction)
+    result = e_fe * float(values.get('E_f')) * float(values.get('A_fpl')) * float(values.get('hf')) * (1 + cot(float(values.get('alpha')))) * np.sin(float(values.get('alpha')))
     return result[0]
-    
+
+# Initialize the database
+initialize_db()
+
 # Center the image
 st.markdown("<h1 style='text-align: center;'>Beams characteristic</h1>", unsafe_allow_html=True)
 st.image(resized_image, caption='', use_column_width ='auto')
 st.markdown("<h1 style='text-align: center;'>Enter your beam data:</h1>", unsafe_allow_html=True)
 
-col1, col2, col3, col4,col5= st.columns([2,2,2,2,4])
+col1, col2, col3, col4, col5 = st.columns([2, 2, 2, 2, 4])
 
 with col1:
-    Model_options=['Xgboost_real', 'XGBoost_syn']
-    model=st.selectbox("Model:", options=Model_options, index=Model_options.index('XGBoost_syn'))
-    if model=='XGBoost_syn':
-        tuned_model_=tuned_model_syn
+    Model_options = ['Xgboost_real', 'XGBoost_syn']
+    model = st.selectbox("Model:", options=Model_options, index=Model_options.index('XGBoost_syn'))
+    if model == 'XGBoost_syn':
+        tuned_model_ = tuned_model_syn
     else: 
-        tuned_model_=tuned_model_real
-    tf= st.number_input("Thickness of FRP (mm):", value=0.352)
-    sf= st.number_input("sf (mm):", value=114)
-    wf= st.number_input("wf (mm):", value=60)
-    A_fpl=2*tf*wf/sf
-    hf= st.number_input("Height of FRP reinforcement hf (mm):", value=300)
+        tuned_model_ = tuned_model_real
+    tf = st.number_input("Thickness of FRP (mm):", value=0.352)
+    sf = st.number_input("sf (mm):", value=114)
+    wf = st.number_input("wf (mm):", value=60)
+    A_fpl = 2 * tf * wf / sf
+    hf = st.number_input("Height of FRP reinforcement hf (mm):", value=300)
 with col2: 
-    E_f= st.number_input("Elasticity modulus of FRP Ef (GPa):", value=218.4)    
+    E_f = st.number_input("Elasticity modulus of FRP Ef (GPa):", value=218.4)    
     alpha_options = [45, 90]
     alpha = st.selectbox("Fibres orientation:", options=alpha_options, index=alpha_options.index(90))
     config_options = ['Fully wrapped', 'U-wrapped', 'Side-bonded']
     S_U_O = st.selectbox("FRP configuration:", options=config_options, index=config_options.index('U-wrapped'))
 
-    
 with col3:
-    b_fl= st.number_input("Width of beam flange (mm):", value=450)
-    b_w= st.number_input("Width of beam web(mm):", value=180)
-    fcm= st.number_input("Concrete compressive strength (MPa):", value=39.7)
-    
-    b_fl_bw=b_fl/b_w
-    Rho_sl= st.number_input("Ratio of longitudinal steel(mm):", value=0.038397)
+    b_fl = st.number_input("Width of beam flange (mm):", value=450)
+    b_w = st.number_input("Width of beam web(mm):", value=180)
+    fcm = st.number_input("Concrete compressive strength (MPa):", value=39.7)
+    b_fl_bw = b_fl / b_w
+    Rho_sl = st.number_input("Ratio of longitudinal steel(mm):", value=0.038397)
 
 with col4:
     Asw = st.number_input("Area of stirrups (mm2):", value=56.5)
     ss = st.number_input("Spacing of stirrups (mm):", value=300)
     f_yy = st.number_input("Steel yield strength fswy (MPa):", value=542)
-    if ss==0:
+    if ss == 0:
         Rho_sw = 0
     else: 
-        Rho_sw =Asw / ss/b_w
+        Rho_sw = Asw / ss / b_w
         
-values=pd.DataFrame({
-    'A_fpl':[A_fpl],
+values = pd.DataFrame({
+    'A_fpl': [A_fpl],
     'E_f': [E_f],
     'Rho_sw': [Rho_sw],
     'Rho_sl': [Rho_sl],
     'alpha': [np.radians(int(alpha))],
     'hf': [hf],
     'b_fl_bw': [b_fl_bw],
-    'S_U_O':[np.where(S_U_O=='Fully wrapped',0,np.where(S_U_O=='U-wrapped',1,2))],
-    'Rho_f':[A_fpl/b_w],
-    'fcm':[fcm],
+    'S_U_O': [np.where(S_U_O == 'Fully wrapped', 0, np.where(S_U_O == 'U-wrapped', 1, 2))],
+    'Rho_f': [A_fpl / b_w],
+    'fcm': [fcm],
     'f_yy': [f_yy]
 })   
 
 with col5:
-    st.button('Calculate', key='Calculate')
-    out = st.empty()
-    if st.session_state.get('Calculate'):
+    if st.button('Calculate', key='Calculate'):
         result = calculate(values)
         out.text(f"Contribution of FRP to shear resistance: \n {result:.2f} kN")

@@ -54,7 +54,6 @@ def calculate(values):
         'alpha': [float(values['alpha'])],
         'b_fl/bw': [float(values['b_fl_bw'])]
     })
-session_values['S_U_O']
     
     prediction = tuned_model_.predict(Sample)
     e_fe = unscalery(prediction)
@@ -85,6 +84,7 @@ session_values = st.session_state.get('user_values', {
     'ss': 300,
     'f_yy': 542
 })
+session_values['S_U_O']
 
 # User inputs
 with col1:

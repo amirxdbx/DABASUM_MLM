@@ -120,7 +120,7 @@ def fib90(values):
 
     # O configuration "f_fwm,c"
     yf = 1.0
-    fib90['f_fd'] = fib90['eps_fu']*fib90['E_f']/yf
+    fib90['f_fd'] = fib90['eps_fu']*fib90['E_f']*1000/yf
     fib90['f_fwm,c'] = 0.8*fib90['k_R']*fib90['f_fd']
     yb = 1.0
     # U configuration + Discrete CFRP "f_fbwm"
@@ -184,7 +184,7 @@ with col1:
     d_fv= st.number_input("Effective height of FRP (mm):", value=260)
 
 with col2: 
-    eps_fu = st.number_input("Ultimate strength of FRP Ef (MPa):", value=2862.9)    
+    eps_fu = st.number_input("Ultimate strength of FRP Ef (MPa):", value=0.013109)    
     E_f = st.number_input("Elasticity modulus of FRP Ef (GPa):", value=218.4)    
     alpha_options = [45, 90]
     alpha = st.selectbox("Fibres orientation:", options=alpha_options, index=alpha_options.index(90))

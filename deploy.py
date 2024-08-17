@@ -107,46 +107,46 @@ with col2:
     session_values['S_U_O']
     S_U_O = st.selectbox("FRP configuration:", options=config_options, index=config_options.index(session_values['S_U_O']))
     
-with col3:
-    b_fl = st.number_input("Width of beam flange (mm):", value=session_values['b_fl'])
-    b_w = st.number_input("Width of beam web(mm):", value=session_values['b_w'])
-    fcm = st.number_input("Concrete compressive strength (MPa):", value=session_values['fcm'])
-    b_fl_bw = b_fl / b_w
-    Rho_sl = st.number_input("Ratio of longitudinal steel(mm):", value=0.038397)
+# with col3:
+#     b_fl = st.number_input("Width of beam flange (mm):", value=session_values['b_fl'])
+#     b_w = st.number_input("Width of beam web(mm):", value=session_values['b_w'])
+#     fcm = st.number_input("Concrete compressive strength (MPa):", value=session_values['fcm'])
+#     b_fl_bw = b_fl / b_w
+#     Rho_sl = st.number_input("Ratio of longitudinal steel(mm):", value=0.038397)
 
-with col4:
-    Asw = st.number_input("Area of stirrups (mm2):", value=session_values['Asw'])
-    ss = st.number_input("Spacing of stirrups (mm):", value=session_values['ss'])
-    f_yy = st.number_input("Steel yield strength fswy (MPa):", value=session_values['f_yy'])
-    if ss == 0:
-        Rho_sw = 0
-    else: 
-        Rho_sw = Asw / ss / b_w
+# with col4:
+#     Asw = st.number_input("Area of stirrups (mm2):", value=session_values['Asw'])
+#     ss = st.number_input("Spacing of stirrups (mm):", value=session_values['ss'])
+#     f_yy = st.number_input("Steel yield strength fswy (MPa):", value=session_values['f_yy'])
+#     if ss == 0:
+#         Rho_sw = 0
+#     else: 
+#         Rho_sw = Asw / ss / b_w
 
-# Store current values in session_state
-st.session_state.user_values = {
-    'tf': tf,
-    'sf': sf,
-    'wf': wf,
-    'hf': hf,
-    'E_f': E_f,
-    'alpha': alpha,
-    'S_U_O':S_U_O,    
-    'b_fl': b_fl,
-    'b_w': b_w,
-    'fcm': fcm,
-    'Asw': Asw,
-    'ss': ss,
-    'f_yy': f_yy,
-    'Rho_sw':Rho_sw,
-    'Rho_sl': Rho_sl
-}
+# # Store current values in session_state
+# st.session_state.user_values = {
+#     'tf': tf,
+#     'sf': sf,
+#     'wf': wf,
+#     'hf': hf,
+#     'E_f': E_f,
+#     'alpha': alpha,
+#     'S_U_O':S_U_O,    
+#     'b_fl': b_fl,
+#     'b_w': b_w,
+#     'fcm': fcm,
+#     'Asw': Asw,
+#     'ss': ss,
+#     'f_yy': f_yy,
+#     'Rho_sw':Rho_sw,
+#     'Rho_sl': Rho_sl
+# }
 
-# Calculate button and output
-with col5:
-    st.button('Calculate', key='Calculate')
-    out = st.empty()
-    # if st.session_state.get('Calculate'):
-    #     result = calculate(st.session_state.user_values)
-    #     out.text(f"Contribution of FRP to shear resistance: \n {result:.2f} kN")
+# # Calculate button and output
+# with col5:
+#     st.button('Calculate', key='Calculate')
+#     out = st.empty()
+#     # if st.session_state.get('Calculate'):
+#     #     result = calculate(st.session_state.user_values)
+#     #     out.text(f"Contribution of FRP to shear resistance: \n {result:.2f} kN")
     

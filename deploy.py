@@ -165,7 +165,11 @@ with col5:
         values['result'] = result
         values['model'] = model
         st.session_state.df = pd.concat([st.session_state.df, values], ignore_index=True)
-        st.write(f"Contribution of FRP to shear resistance: {result:.2f} kN")
+        st.write(f"Contribution of FRP to shear resistance (Based on XGBoost model): {result:.2f} kN")
+
+        ACI_result= ACI(values)
+        values['ACI_result'] = ACI_result
+        st.write(f"Contribution of FRP to shear resistance (based on ACI 440.2R): {ACI_result:.2f} kN")
     
     if st.button('Clear Logs'):
         st.session_state.df = pd.DataFrame()  # Clear the DataFrame

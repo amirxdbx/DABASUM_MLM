@@ -85,7 +85,7 @@ def ACI(values):
     # V_f_predicted
     Sai_f = np.where(row['full'] == 0, 0.95, 0.85)
     A_fv = 2*row['tf']*np.where(row['wf'] == 1, np.sin(alpha), row['wf']/row['sf'])
-    row['V_f_model'] = phi*Sai_f*(f_fe*Alpha_factor*row['d_fv']*A_fv)*0.001        
+    row['V_f_model'] = Sai_f*(f_fe*Alpha_factor*row['d_fv']*A_fv)*0.001        
     return  row['V_f_model']
 
 # Initialize the DataFrame in session_state if not already present

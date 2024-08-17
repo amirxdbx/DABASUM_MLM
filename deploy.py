@@ -66,23 +66,22 @@ def ACI(values):
     row=values.copy(deep=True)
     row['full']=row['S_U_O']
     ## ACI 440.2R-17
-    alpha = row.alpha.astype(int)
+    alpha = row.alpha
     Alpha_factor = np.sin(alpha)+np.cos(alpha)
-    C_E = 0.95    # phi = 0.75
-    phi = 1    # C_E = 0.95  # considering interior exposure for CFRP
+    C_E = 0.95   
     eps_fu = C_E*row['eps_fu']
     fck=row['fcm']-8
     ###   e_fe_predicted  #########################################
-    row['L_e'] = 23300/(row['tf']*row['E_f']*1000)**0.58
+    L_e = 23300/(row['tf']*row['E_f']*1000)**0.58
     k_1 = (fck/27)**(2/3)
-    k_2 = np.where(row['full']==1,(row['d_fv']-row['L_e'])/row['d_fv'],
-                    np.where(row.full==2,np.maximum(0,(row['d_fv']-2*row['L_e'])/row['d_fv']),0))
-    row['k_v'] = np.where(row['full'] == 0, 0.75,(k_1*k_2*row['L_e'])/(11900*eps_fu))
+    k_2 = np.where(row['full']==1,(row['d_fv']-L_e)/row['d_fv'],
+                    np.where(row.full==2,np.maximum(0,(row['d_fv']-2*L_e)/row['d_fv']),0))
+    row['k_v'] = np.where(row['full'] == 0, 0.75,(k_1*k_2*L_e)/(11900*eps_fu))
     # e_fe_predicted
-    row['e_fe_ACI'] = row['k_v']*eps_fu
-    row['e_fe_ACI'] = np.where(row['e_fe_ACI'] > 0.004, 0.004,row['e_fe_ACI'])
+    e_fe_ACI = row['k_v']*eps_fu
+    e_fe_ACI = np.where(e_fe_ACI > 0.004, 0.004,e_fe_ACI)
     # f_fe
-    f_fe = row['E_f']*1000*row['e_fe_ACI']
+    f_fe = row['E_f']*1000*e_fe_ACI
     # V_f_predicted
     Sai_f = np.where(row['full'] == 0, 0.95, 0.85)
     A_fv = 2*row['tf']*np.where(row['wf'] == 1, np.sin(alpha), row['wf']/row['sf'])
@@ -155,7 +154,7 @@ values = pd.DataFrame({
     'fcm': [fcm],
     'f_yy': [f_yy]
 })  
-values['alpha']
+
 # Calculate and save results
 with col5:
     if st.button('Calculate'):

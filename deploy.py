@@ -104,6 +104,7 @@ with col2:
     alpha_options = [45, 90]
     alpha = st.selectbox("Fibres orientation:", options=alpha_options, index=alpha_options.index(session_values['alpha']))
     config_options = ['Fully wrapped', 'U-wrapped', 'Side-bonded']
+    session_values['S_U_O']
     S_U_O = st.selectbox("FRP configuration:", options=config_options, index=config_options.index(session_values['S_U_O']))
     
 with col3:

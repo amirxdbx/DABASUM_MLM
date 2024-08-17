@@ -71,6 +71,12 @@ def insert_record(values):
     conn.commit()
     conn.close()
 
+def fetch_records():
+    conn = sqlite3.connect('beam_data.db')
+    df = pd.read_sql_query("SELECT * FROM BeamInputs", conn)
+    conn.close()
+    return df
+
 def calculate(values):    
     st.write(values)
 
@@ -154,3 +160,8 @@ with col5:
     if st.button('Calculate', key='Calculate'):
         result = calculate(values)
         out.text(f"Contribution of FRP to shear resistance: \n {result:.2f} kN")
+
+# Display the records from the database
+st.markdown("<h2 style='text-align: center;'>Recorded Data</h2>", unsafe_allow_html=True)
+data_df = fetch_records()
+st.dataframe(data_df)

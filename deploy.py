@@ -184,7 +184,7 @@ with col1:
     d_fv= st.number_input("Effective height of FRP (mm):", value=260)
 
 with col2: 
-    eps_fu = st.number_input("Ultimate strength of FRP Ef (MPa):", value=0.013109)    
+    eps_fu = st.number_input("Ultimate strain of FRP eps_fu:", value=0.013109)    
     E_f = st.number_input("Elasticity modulus of FRP Ef (GPa):", value=218.4)    
     alpha_options = [45, 90]
     alpha = st.selectbox("Fibres orientation:", options=alpha_options, index=alpha_options.index(90))

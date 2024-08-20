@@ -40,7 +40,7 @@ def cot(x):
     return 1 / np.tan(x)
 
 def unscalery(value):
-    return np.exp(((value - 0.001) * 3.380368123788582) - 7.902757481871019)
+    return np.exp(((value - 0.001) * 3.670451157777907) -7.902757481871019)
 
 # Function to calculate FRP contribution to shear resistance
 def calculate(values):    

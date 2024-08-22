@@ -46,7 +46,7 @@ def unscalery(value):
 def calculate(values):    
     st.write(values)
     Sample = pd.DataFrame(data={
-        'Rho_fE_f': [float(values.Rho_fE_f)],
+        'Rho_fE_f': [float(values.Rho_f)*float(values.E_f)],
         'fcm': [float(values.fcm)],
         'Rho_sw': [float(values.Rho_sw)],
         'Rho_sl': [float(values.Rho_sl)],
@@ -208,7 +208,6 @@ with col4:
 # Prepare values for calculation
 values = pd.DataFrame({
     'A_fpl': [A_fpl],
-    'Rho_f_E_f': [Rho_f*E_f],
     'E_f':[E_f],
     'Rho_sw': [Rho_sw],
     'Rho_sl': [Rho_sl],

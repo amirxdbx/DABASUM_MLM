@@ -209,7 +209,7 @@ with col4:
 values = pd.DataFrame({
     'A_fpl': [A_fpl],
     'Rho_f_E_f': [Rho_f*E_f],
-    'E_f':[E_f]
+    'E_f':[E_f],
     'Rho_sw': [Rho_sw],
     'Rho_sl': [Rho_sl],
     'alpha': [np.radians(int(alpha))],

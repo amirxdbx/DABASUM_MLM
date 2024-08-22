@@ -46,16 +46,14 @@ def unscalery(value):
 def calculate(values):    
     st.write(values)
     Sample = pd.DataFrame(data={
-        'Rho_f': [float(values.Rho_f)],
+        'Rho_fE_f': [float(values.Rho_fE_f)],
         'fcm': [float(values.fcm)],
-        'E_f': [float(values.E_f)],
         'Rho_sw': [float(values.Rho_sw)],
         'Rho_sl': [float(values.Rho_sl)],
         'S_U_O': [int(values.S_U_O)],
         'hf': [float(values.hf)],
         'f_yy': [float(values.f_yy)],
         'alpha': [float(values.alpha)],
-        'b_fl/bw': [float(values['b_fl_bw'])] 
     })
     prediction = tuned_model_.predict(Sample)
     e_fe = unscalery(prediction)
@@ -176,6 +174,7 @@ with col1:
     Model_options = ['Xgboost_real', 'XGBoost_syn']
     model = st.selectbox("Model:", options=Model_options, index=Model_options.index('XGBoost_syn'))
     tuned_model_ = tuned_model_syn if model == 'XGBoost_syn' else tuned_model_real
+    
     tf = st.number_input("Thickness of FRP (mm):", value=0.352)
     sf = st.number_input("sf (mm):", value=114)
     wf = st.number_input("wf (mm):", value=60)
@@ -209,7 +208,8 @@ with col4:
 # Prepare values for calculation
 values = pd.DataFrame({
     'A_fpl': [A_fpl],
-    'E_f': [E_f],
+    'Rho_f_E_f': [Rho_f*E_f],
+    'E_f':[E_f]
     'Rho_sw': [Rho_sw],
     'Rho_sl': [Rho_sl],
     'alpha': [np.radians(int(alpha))],

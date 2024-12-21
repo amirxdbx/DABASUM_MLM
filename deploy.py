@@ -183,7 +183,7 @@ if 'df' not in st.session_state:
 
 # Center the image
 st.markdown("<h1 style='text-align: center;'>Beams characteristic</h1>", unsafe_allow_html=True)
-st.image(resized_image, caption='', use_columns_width='auto')
+st.image(resized_image, caption='', use_column_width='auto')
 st.markdown("<h1 style='text-align: center;'>Enter your beam data:</h1>", unsafe_allow_html=True)
 
 # UI layout with column configuration

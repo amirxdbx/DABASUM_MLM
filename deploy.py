@@ -165,8 +165,38 @@ if 'df' not in st.session_state:
     st.session_state.df = pd.DataFrame()
 
 # Display the image
-st.image(logo, use_container_width ='auto')
-st.markdown("<h1 style='text-align: center;'>Interpretable Machine Learning-Based Model for Shear Resistance Prediction of CFRP-Strengthened RC Beams Using SHAP Values", unsafe_allow_html=True)
+# Display the logo with appropriate sizing
+st.image(logo, use_container_width=True)
+
+# Display the main title centered
+st.markdown(
+    "<h1 style='text-align: center;'>Interpretable Machine Learning-Based Model for Shear Resistance Prediction of CFRP-Strengthened RC Beams Using SHAP Values</h1>",
+    unsafe_allow_html=True,
+)
+
+# Display the descriptive paragraph
+st.markdown(
+    """
+    <p style='text-align: left;'>
+        In this online app, you can predict the contribution of FRP reinforcements to the shear resistance of RC beams effortlessly by providing only the most relevant input parameters. 
+        For further information, please refer to the paper at this link.
+    </p>
+    """,
+    unsafe_allow_html=True,
+)
+
+# Add a button/link to explore the app
+st.markdown(
+    """
+    <div style='text-align: center;'>
+        <a href="https://doi.org/10.1016/j.compstruct.2024.118632" target="_blank" style='text-decoration: none; font-size: 18px;'>
+            <strong>Read the Paper »</strong>
+        </a>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
+
 st.markdown("<h1 style='text-align: center;'>Beams characteristic</h1>", unsafe_allow_html=True)
 st.image(resized_image, caption='', use_container_width ='auto')
 st.markdown("<h1 style='text-align: center;'>Enter your beam data:</h1>", unsafe_allow_html=True)

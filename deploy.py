@@ -178,7 +178,7 @@ st.markdown(
     """
     <p style='text-align: left;'>
         In this online app, you can predict the contribution of FRP reinforcements to the shear resistance of RC beams effortlessly by providing only the most relevant input parameters. 
-        For further information, please refer to the paper at this link.
+        For further information, please refer to the paper at this link. The Portuguese Foundation for Science and Technology (Fundação para a Ciência e Tecnologia (FCT)) supported financially this work through the grant 2020.08876.BD (https://doi.org/10.54499/2020.08876.BD). 
     </p>
     """,
     unsafe_allow_html=True,

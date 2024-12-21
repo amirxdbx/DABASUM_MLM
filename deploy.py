@@ -169,7 +169,7 @@ st.image(logo, use_container_width ='auto')
 
 # Display the main title centered
 st.markdown(
-    "<h1 style='text-align: center;'>Interpretable Machine Learning-Based Model for Shear Resistance Prediction of CFRP-Strengthened RC Beams Using SHAP Values</h1>",
+    "<h1 style='text-align: center;'>An interpretable machine learning-based model for shear resistance prediction of CFRP-strengthened RC beams using experimental and synthetic dataset</h1>",
     unsafe_allow_html=True,
 )
 

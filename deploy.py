@@ -1,7 +1,4 @@
 import streamlit as st
-
-
-
 from PIL import Image
 import pandas as pd 
 import numpy as np
@@ -164,8 +161,9 @@ if 'df' not in st.session_state:
     st.session_state.df = pd.DataFrame()
 
 # Center the image
+st.image("ISISE.png", alt="Logo", width="80" height="80">)
 st.markdown("<h1 style='text-align: center;'>Beams characteristic</h1>", unsafe_allow_html=True)
-st.image(resized_image, caption='', use_column_width='auto')
+st.image(resized_image, caption='', use_container_width ='auto')
 st.markdown("<h1 style='text-align: center;'>Enter your beam data:</h1>", unsafe_allow_html=True)
 
 # UI layout with column configuration

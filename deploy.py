@@ -1,17 +1,6 @@
 import streamlit as st
 
-# PROJECT LOGO
-st.markdown(
-    """
-    <div align="center">
-    <img src="ISISE.png" alt="Logo" width="80" height="80">
 
-
-      </p>
-    </div>
-    """,
-    unsafe_allow_html=True
-)
 
 from PIL import Image
 import pandas as pd 

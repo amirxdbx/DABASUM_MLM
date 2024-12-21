@@ -6,20 +6,13 @@ st.markdown(
     <div align="center">
     <img src="ISISE.png" alt="Logo" width="80" height="80">
 
-      <h3 align="center">Interpretable Machine Learning-Based Model for Shear Resistance Prediction of CFRP-Strengthened RC Beams Using SHAP Values</h3>
-
-      <p align="center">
-        In this online app you can predict the contribution of FRP reinforcements to shear resistance of RC beams effortlessly and only providing the most relevant input parameters. 
-        For further information, please refer to the paper at this link. 
-        <br />
-        <a href="https://doi.org/10.1016/j.compstruct.2024.118632"><strong>Link to paper »</strong></a>
-        <br />
 
       </p>
     </div>
     """,
     unsafe_allow_html=True
 )
+
 from PIL import Image
 import pandas as pd 
 import numpy as np

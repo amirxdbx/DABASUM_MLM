@@ -161,12 +161,14 @@ if 'df' not in st.session_state:
     st.session_state.df = pd.DataFrame()
 
 # Center the image
-# Load and resize the image
-logo = Image.open("ISISE.png")
-logo = logo.resize((80, 80))
-
-# Display the image
-st.image(logo, caption="Logo")
+st.markdown(
+    """
+    <div style="text-align: center;">
+        <img src="ISISE.png" alt="Logo" width="80" height="80">
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 st.markdown("<h1 style='text-align: center;'>Beams characteristic</h1>", unsafe_allow_html=True)
 st.image(resized_image, caption='', use_container_width ='auto')
 st.markdown("<h1 style='text-align: center;'>Enter your beam data:</h1>", unsafe_allow_html=True)

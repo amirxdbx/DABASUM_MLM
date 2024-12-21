@@ -160,15 +160,8 @@ def fib90(values):
 if 'df' not in st.session_state:
     st.session_state.df = pd.DataFrame()
 
-# Center the image
-st.markdown(
-    """
-    <div style="text-align: center;">
-        <img src="ISISE.png" alt="Logo" width="80" height="80">
-    </div>
-    """,
-    unsafe_allow_html=True
-)
+st.image("ISISE.png", caption="Logo", use_container_width='auto')
+
 st.markdown("<h1 style='text-align: center;'>Beams characteristic</h1>", unsafe_allow_html=True)
 st.image(resized_image, caption='', use_container_width ='auto')
 st.markdown("<h1 style='text-align: center;'>Enter your beam data:</h1>", unsafe_allow_html=True)

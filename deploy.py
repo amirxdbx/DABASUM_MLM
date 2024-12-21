@@ -165,8 +165,7 @@ if 'df' not in st.session_state:
     st.session_state.df = pd.DataFrame()
 
 # Display the image
-# Display the logo with appropriate sizing
-st.image(logo, use_container_width=True)
+st.image(logo, use_container_width ='auto')
 
 # Display the main title centered
 st.markdown(

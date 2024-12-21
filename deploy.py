@@ -15,6 +15,10 @@ def resize_image(image, max_size=(600, 400)):
 # Load and resize the image
 image = Image.open('cross_section-ML.png')
 resized_image = resize_image(image, max_size=(600, 400))
+# Load and resize the image
+logo = Image.open("ISISE.png")
+logo = logo.resize((80, 80))
+
 
 # Set page configuration
 st.set_page_config(page_title="FRP contribution to Shear resistance", page_icon=":guardsman:", layout="wide")
@@ -160,8 +164,8 @@ def fib90(values):
 if 'df' not in st.session_state:
     st.session_state.df = pd.DataFrame()
 
-st.image("ISISE.png", caption="Logo", use_container_width='auto')
-
+# Display the image
+st.image(logo, use_container_width ='auto')
 st.markdown("<h1 style='text-align: center;'>Beams characteristic</h1>", unsafe_allow_html=True)
 st.image(resized_image, caption='', use_container_width ='auto')
 st.markdown("<h1 style='text-align: center;'>Enter your beam data:</h1>", unsafe_allow_html=True)

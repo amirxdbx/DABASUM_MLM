@@ -5,7 +5,31 @@ import streamlit as st
 import xgboost as xgb
 import pickle
 import io
+# PROJECT LOGO
+st.markdown(
+    """
+    <br />
+    <div align="center">
+      <a href="https://github.com/amirxdbx/DABASUM_MLM">
+        <img src="ISISE.png" alt="Logo" width="80" height="80">
+      </a>
 
+      <h3 align="center">Interpretable Machine Learning-Based Model for Shear Resistance Prediction of CFRP-Strengthened RC Beams Using SHAP Values</h3>
+
+      <p align="center">
+        In this online app you can predict the contribution of FRP reinforcements to shear resistance of RC beams effortlessly and only providing the most relevant input parameters. 
+        For further information, please refer to the paper at this link. 
+        <br />
+        <a href="https://shear-frp-dabasum.streamlit.app/"><strong>Explore the App »</strong></a>
+        <br />
+        <br />
+        <a href="https://shear-frp-dabasum.streamlit.app/">View Demo</a>
+        <a href="mailto:amir.xdbx@gmail.com">Report problems!</a>
+      </p>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 # Function to resize image
 def resize_image(image, max_size=(600, 400)):
     original_size = image.size
@@ -163,7 +187,7 @@ if 'df' not in st.session_state:
 
 # Center the image
 st.markdown("<h1 style='text-align: center;'>Beams characteristic</h1>", unsafe_allow_html=True)
-st.image(resized_image, caption='', use_column_width='auto')
+st.image(resized_image, caption='', use_container_width='auto')
 st.markdown("<h1 style='text-align: center;'>Enter your beam data:</h1>", unsafe_allow_html=True)
 
 # UI layout with column configuration

@@ -178,7 +178,7 @@ st.markdown(
     """
     <p style='text-align: left;'>
         In this online app, you can predict the contribution of FRP reinforcements to the shear resistance of RC beams effortlessly by providing only the most relevant input parameters. 
-        For further information, please refer to the paper at this link. The Portuguese Foundation for Science and Technology (Fundação para a Ciência e Tecnologia (FCT)) supported financially this work through the grant 2020.08876.BD (https://doi.org/10.54499/2020.08876.BD). 
+        For further information, please refer to the paper at the following link. The Portuguese Foundation for Science and Technology (Fundação para a Ciência e Tecnologia (FCT)) supported financially this work through the grant 2020.08876.BD (https://doi.org/10.54499/2020.08876.BD). 
     </p>
     """,
     unsafe_allow_html=True,
@@ -297,3 +297,15 @@ with col5:
 # Display the DataFrame with saved results
 st.write("Log of results:")
 st.write(st.session_state.df)
+
+st.markdown("""
+ <p style='text-align: left;'>
+@article{mohammadi2025interpretable,
+  title={An interpretable machine learning-based model for shear resistance prediction of CFRP-strengthened RC beams using experimental and synthetic dataset},
+  author={Mohammadi, Amirhossein and Barros, Joaquim AO and Sena-Cruz, Jos{\'e}},
+  journal={Compos. Struct},
+  volume={351},
+  pages={118632},
+  year={2025}
+} </p>"""
+            ,unsafe_allow_html=True)

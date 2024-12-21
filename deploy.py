@@ -173,6 +173,17 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
+st.markdown(
+    """
+    <p style='text-align: left;'>
+    <strong>Authors:</strong> Amirhossein Mohammadi, Joaquim A. O. Barros, José Sena-Cruz<br>
+    <strong>Released at</strong> 2024<br>
+    <strong>License:</strong> GNU General Public License (CC-BY)
+    </p>
+    """,
+    unsafe_allow_html=True,
+)
+
 # Display the descriptive paragraph
 st.markdown(
     """

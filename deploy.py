@@ -166,6 +166,7 @@ if 'df' not in st.session_state:
 
 # Display the image
 st.image(logo, use_container_width ='auto')
+st.markdown("<h1 style='text-align: center;'>Interpretable Machine Learning-Based Model for Shear Resistance Prediction of CFRP-Strengthened RC Beams Using SHAP Values", unsafe_allow_html=True)
 st.markdown("<h1 style='text-align: center;'>Beams characteristic</h1>", unsafe_allow_html=True)
 st.image(resized_image, caption='', use_container_width ='auto')
 st.markdown("<h1 style='text-align: center;'>Enter your beam data:</h1>", unsafe_allow_html=True)

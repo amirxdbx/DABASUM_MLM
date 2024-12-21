@@ -1,3 +1,4 @@
+import streamlit as st
 
 # PROJECT LOGO
 st.markdown(
@@ -22,7 +23,6 @@ st.markdown(
 from PIL import Image
 import pandas as pd 
 import numpy as np
-import streamlit as st
 import xgboost as xgb
 import pickle
 import io

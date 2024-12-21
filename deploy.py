@@ -298,26 +298,9 @@ with col5:
 st.write("Log of results:")
 st.write(st.session_state.df)
 
-# Approach 1: Styled HTML representation
-st.markdown(
-    """
-    <div style='background-color: #f9f9f9; padding: 15px; border-radius: 5px; border: 1px solid #ddd;'>
-        <p style='text-align: left; font-family: monospace;'>
-            @article{mohammadi2025interpretable,<br>
-            &nbsp;&nbsp;title={An interpretable machine learning-based model for shear resistance prediction of CFRP-strengthened RC beams using experimental and synthetic dataset},<br>
-            &nbsp;&nbsp;author={Mohammadi, Amirhossein and Barros, Joaquim AO and Sena-Cruz, Jos&eacute;},<br>
-            &nbsp;&nbsp;journal={Compos. Struct},<br>
-            &nbsp;&nbsp;volume={351},<br>
-            &nbsp;&nbsp;pages={118632},<br>
-            &nbsp;&nbsp;year={2025}<br>
-            }
-        </p>
-    </div>
-    """,
-    unsafe_allow_html=True,
-)
 
-# Approach 2: Plain-text code block using Streamlit's code feature
+st.write("If you find this work helpful, please cite our paper:")
+
 st.code(
     """
 @article{mohammadi2025interpretable,
